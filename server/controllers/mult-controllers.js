@@ -1,20 +1,4 @@
-const multer  = require('multer');
-const { GridFsStorage } = require('multer-gridfs-storage');
 
-function upload(collection) {
-    const storage = new GridFsStorage({
-        url: process.env.CLUSTER,
-        file: (req, file) => { // TODO - These args aren't being used ... do I need them here?
-            return new Promise((resolve, _reject) => {
-                const fileInfo = {
-                    bucketName: collection
-                }
-                resolve(fileInfo);
-            })
-        }
-    });
-    return multer({ storage });
-}
 
 const upload_banner = async (req, res) => {
     console.log(req.file.id); // Looks like this works thank god ... I can reference the new file by mongoID
@@ -26,6 +10,5 @@ const upload_banner = async (req, res) => {
 }
 
 module.exports = {
-    upload,
     upload_banner
 }

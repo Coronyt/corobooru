@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    upload,
+    upload
+} = require("../middleware/mult-engine");
+
+const {
     upload_banner
 } = require("../controllers/mult-controllers");
 
