@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* Universal styles */
+* {
+  font-family: "Sometype Mono";
+  color: white;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: black;
+  /* TODO - What do the below lines do? */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  border-left: solid 2px white; /* TODO - Can I assign this to a var? I'm using these border params a lot */
+  border-right: solid 2px white;
+}
+
+/* Header styles */
+header {
+  border-top: solid 2px white;
+  border-bottom: solid 2px white;
+  padding-bottom: 0.5em;
+  transition: all 0.1s;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+header:hover {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+/* Footer styles */
+footer {
+  text-transform: lowercase;
+  font-size: small;
+  transition: all 0.1s;
+  border-top: solid 2px white;
+  border-bottom: solid 2px white;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+footer:hover {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+footer h4 { /* TODO - Temp selector */
+  text-align: center;
+}
+
+/* Navbar styles */
+.navbar {
+  margin-bottom: 0.6em;
+  min-height: 2em;
+  max-height: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.navbar .title {
+  font-size: x-small;
+  margin-left: 1.6em;
+  transition: all 0.1s;
+}
+
+.navbar .title:hover {
+  transform: translateY(-0.2em);
+}
+
+.navbar .logged-out {
+  display: flex;
+  margin-right: 1em;
+  padding: 0.2em;
+}
+
+.navbar .logged-out a {
+  text-transform: lowercase;
+  font-size: small;
+  margin-left: 1.3em;
+  transition: all 0.1s;
+}
+
+.navbar .logged-out a:hover {
+  transform: translateY(-0.2em);
+}
+
+.navbar .logged-in {
+  display: flex;
+  margin-right: 1em;
+  margin-top: 0.8em;
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.navbar .logged-in span:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/* Landing styles */
+/* .landing {
+  min-height: 800px;
+} */
+
+.landing h2 { /* TODO - Temp selector */
+  font-size: medium;
+}
+
+/* Login and signup styles (?) */
+.login {
+  /* align-items: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login form {
+  border: solid 2px white;
+  padding: 2em;
+  margin-top: -20em;
+  min-width: 16em;
+}
+
+.login form * {
+  display: block;
+  margin-top: 1em;
+}
+
+.login form h3 {
+  margin-bottom: 2em;
+}
+
+.login * input {
+  background-color: rgba(200, 200, 255, 0.2);
+  border: none;
+  min-width: 16em;
+}
+
+.login * input:focus {
+  background-color: rgba(200, 200, 255, 0.8);
+  color: black;
+  outline: none;
+  font-weight: bold;
+}
+
+.login form button {
+  background-color: rgba(255, 255, 255, 0);
+  text-transform: uppercase;
+  min-width: 6em;
+  transition: all 0.2s;
+  border-style: outset;
+  border-color: white;
+  padding: 0.5em 1em 0.5em 1em;
+  margin-top: 3em;
+}
+
+.login form button:hover {
+  background-color: rgba(200, 200, 255, 0.02);
+  transform: translateY(-3px);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* TODO - Lots of duplicate styling happening here */
+
+.signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup form {
+  border: solid 2px white;
+  padding: 2em;
+  margin-top: -20em;
+  min-width: 16em;
+}
+
+.signup form * {
+  display: block;
+  margin-top: 1em;
+}
+
+.signup form button {
+  margin-top: 2em;
+  background-color: black;
+}
+
+/* Auxiliary styles */
+.content {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+  min-height: 800px; /* TODO - Can I connect this to a media query? */
+}
+
+/* Animation testing */
+@keyframes login_anim {
+  from {
+    transform: rotate3d(1, 0, 0, 90deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+}
+
+.login form {
+  animation-name: login_anim;
+  animation-duration: 0.6s;
+}
+
+.signup form {
+  animation-name: login_anim;
+  animation-duration: 0.6s;
+}
