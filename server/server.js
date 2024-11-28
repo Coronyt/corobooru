@@ -1,9 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-// const parser = require("body-parser");
+// const parser = require("body-parser"); // TODO - I think I can uninstall this since I'm just using the JSON parser that comes with Express
 
-// TODO - Must add .env to .gitignore
 require("dotenv").config()
 
 // Importing Express route handlers

@@ -22,6 +22,10 @@ const user_schema = new Schema({
         type: String,
         required: true
     },
+    banner: {
+        type: String,
+        default: ""
+    }
 });
 
 user_schema.statics.login = async function (username, password) {
@@ -66,6 +70,20 @@ user_schema.statics.signup = async function (email, username, password) {
     const user = await this.create({email, username, password: hash});
     // Returning new user document
     return user;
+}
+
+// TODO - Got the below function working more-or-less as intended, now just have to clean it up
+user_schema.statics.set_banner = async function (username, banner_ID) {
+    const user = await this.findOne({username});
+    // console.log(user);
+    // Running validations (?)
+    // TODO
+    // Assigning banner by ID
+    // user.$set("banner", banner_ID);
+    user.banner = banner_ID; // Mongoose will interpret this as an updateOne() invocation for MongoDB
+    const new_user = await user.save(); // Returns a promise ... resolves to the saved document if successful
+    // Does anything need to be returned?
+    return new_user;
 }
 
 module.exports = mongoose.model("User", user_schema);

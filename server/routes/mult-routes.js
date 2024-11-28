@@ -6,20 +6,17 @@ const {
 } = require("../middleware/mult-engine");
 
 const {
-    upload_banner
+    assign_banner
 } = require("../controllers/mult-controllers");
 
 // TODO - Just making a note here cause I will need to handle this later ... MUST check that the file is an IMAGE before allowing any uploads
     // I'd think I can hopefully handle this on the front-end? If not than maybe the controller func or here as a last resort ... or in the upload engine itself
+    // Just had a thought that, in the event I'm not able to evaluate the image on the front-end, I could pass it through a middleware func before passing it to upload()
 
 // Upload routes
+router.post("/upload/banner", upload("banners").single("file"), assign_banner);
 
-    // TODO - I'm thinking I should at least move the second callback to the controllers file
-        // And change upload_img to just upload and keep as an aux func
-        // Or maybe I can put that in a new mult-engine file
-        // And move the second callback to controllers
-        // Since it is shaping up to handle the controller logic anyways
-            // i.e. multer middleware uploads, then my controller handles the logic from there (with the uploaded file's ID now accessible from req)
-router.post("/upload/banner", upload("banners").single("file"), upload_banner);
+// ^ Logic flow is:
+    // Req w/ file is received at route -> file is uploaded through multer engine -> req (now w/ _id) is handled by second callback which sets banner by ID in user document
 
 module.exports = router;
