@@ -1,9 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-// const parser = require("body-parser"); // TODO - I think I can uninstall this since I'm just using the JSON parser that comes with Express
 
-require("dotenv").config()
+require("dotenv").config();
 
 // Importing Express route handlers
 const auth_routes = require("./routes/auth-routes");
@@ -27,7 +26,6 @@ mongoose.connect(process.env.CLUSTER)
 // Initializing middleware
 app.use(morgan("dev"));
 app.use(express.json());
-// app.use(parser.json()); // Shouldn't need this since I'm using the Express JSON parser already (express.json())
 
 // Unprotected endpoints
 app.use("/api", auth_routes);

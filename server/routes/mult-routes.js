@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
@@ -13,10 +14,20 @@ const {
     // I'd think I can hopefully handle this on the front-end? If not than maybe the controller func or here as a last resort ... or in the upload engine itself
     // Just had a thought that, in the event I'm not able to evaluate the image on the front-end, I could pass it through a middleware func before passing it to upload()
 
+// TODO - Another thought regarding the banner upload logic ... make sure that only authenticated users can upload to THEIR OWN BOARDS
+    // i.e. If an authorized user sends a request to change a different user's banner ... that shouldn't be possible and must be prevented
+
 // Upload routes
 router.post("/upload/banner", upload("banners").single("file"), assign_banner);
 
 // ^ Logic flow is:
     // Req w/ file is received at route -> file is uploaded through multer engine -> req (now w/ _id) is handled by second callback which sets banner by ID in user document
+
+// Retrieval routes
+router.get("/find/banner/:id", async (req, res) => {
+    const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
+    const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "banners" });
+    bucket.openDownloadStreamByName("49101a4b5612a9b57c32e932bba5ca0b").pipe(res);
+});
 
 module.exports = router;
