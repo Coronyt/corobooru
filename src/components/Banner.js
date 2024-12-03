@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-import { ring } from 'ldrs';
+import { dotStream } from 'ldrs';
 
-ring.register();
+dotStream.register();
 
 // TODO - I think I should make this function a hook so it can be used by other components
 const load_img = (img, url) => {
@@ -43,14 +43,15 @@ const Banner = () => {
     }, [user]);
 
     return (
+        // TODO - Upload button will display if user is logged in (check AuthContext)
         <div className="banner">
-            {pending && <l-ring
-                size="40"
-                stroke="5"
-                bg-opacity="0"
-                speed="2" 
-                color="white" 
-            ></l-ring>}
+            {pending && <div className="banner-ldr">
+                <l-dot-stream
+                    size="60"
+                    speed="2.5"
+                    color="white"
+                ></l-dot-stream>
+            </div>}
             <img src="" alt="" className="banner-img" id="banner-img"/>
         </div>
     );

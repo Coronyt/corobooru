@@ -198,7 +198,35 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .banner-img {
-  max-width: 100%;
+  width: 100%;
+  min-height: 200px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.banner-upload {
+  padding-top: 0.55em;
+  font-size: xx-large;
+  transition: all 0.1s;
+}
+
+.banner-upload:hover {
+  cursor: pointer;
+  transform: translateY(-0.1em);
+}
+
+.banner-ldr {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dash-head {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -0.6em;
+  margin-bottom: -1em;
 }
 
 /* Auxiliary styles */
