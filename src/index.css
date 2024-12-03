@@ -193,6 +193,14 @@ footer h4 { /* TODO - Temp selector */
   background-color: black;
 }
 
+.banner {
+  display: block;
+}
+
+.banner-img {
+  max-width: 100%;
+}
+
 /* Auxiliary styles */
 .content {
   margin-top: 1em;

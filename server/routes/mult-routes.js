@@ -7,7 +7,8 @@ const {
 } = require("../middleware/mult-engine");
 
 const {
-    assign_banner
+    assign_banner,
+    find_banner
 } = require("../controllers/mult-controllers");
 
 // TODO - Just making a note here cause I will need to handle this later ... MUST check that the file is an IMAGE before allowing any uploads
@@ -24,10 +25,6 @@ router.post("/upload/banner", upload("banners").single("file"), assign_banner);
     // Req w/ file is received at route -> file is uploaded through multer engine -> req (now w/ _id) is handled by second callback which sets banner by ID in user document
 
 // Retrieval routes
-router.get("/find/banner/:id", async (req, res) => {
-    const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
-    const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "banners" });
-    bucket.openDownloadStreamByName("49101a4b5612a9b57c32e932bba5ca0b").pipe(res);
-});
+router.get("/find/banner/:user", find_banner);
 
 module.exports = router;

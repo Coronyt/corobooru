@@ -18,6 +18,20 @@ const assign_banner = async (req, res) => {
     }
 }
 
+const find_banner = async (req, res) => {
+    // TODO - Nest below code in try/catch block
+    // TODO - Logic for mapping user
+    // console.log(req.params.user);
+    const user = await User.findOne({ username: req.params.user });
+    // console.log(user.banner);
+    // ___
+    const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
+    const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "banners" });
+    const _id = new mongoose.Types.ObjectId(`${user.banner}`);
+    bucket.openDownloadStream(_id).pipe(res); // Will take _id as arg
+}
+
 module.exports = {
-    assign_banner
+    assign_banner,
+    find_banner
 }
