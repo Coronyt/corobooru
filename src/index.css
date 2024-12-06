@@ -168,7 +168,56 @@ footer h4 { /* TODO - Temp selector */
   font-weight: bold;
 }
 
+.banner-file-select {
+  color: white;
+}
+
+.banner-modal input[type="file"] {
+  font-size: medium;
+  padding: 1em;
+  margin-left: 1em;
+  background-color: rgba(200, 200, 255, 0.1);
+  /* border-radius: 2em; */
+}
+
+.banner-modal input[type="file"]::before {
+  content: "Browse";
+  padding: 1em;
+  margin-right: 1em;
+  /* border-radius: 2em; */
+  background-color: rgba(200, 200, 255, 0.1);
+}
+
+.banner-modal input[type="file"]:hover {
+  content: "Browse";
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.banner-file-select::file-selector-button {
+  padding: 1em;
+  content: "Browse";
+  display: none;
+}
+
 /* TODO - Lots of duplicate styling happening here */
+
+.banner-modal-btn { /* Temporarily copy-pasted from login form button styles */
+  background-color: rgba(255, 255, 255, 0);
+  text-transform: uppercase;
+  min-width: 6em;
+  transition: all 0.2s;
+  border-style: outset;
+  border-color: white;
+  padding: 0.5em 1em 0.5em 1em;
+  margin-top: 2em; /* margin-top differs from login form button styles */
+}
+
+.banner-modal-btn:hover {
+  background-color: rgba(200, 200, 255, 0.02);
+  transform: translateY(-3px);
+  cursor: pointer;
+  font-weight: bold;
+}
 
 .signup {
   display: flex;
@@ -222,6 +271,17 @@ footer h4 { /* TODO - Temp selector */
   transform: translate(-50%, -50%);
 }
 
+.banner-modal {
+  position: absolute;
+  top: 1em;
+  /* left: 1em; */
+  right: 1em;
+  background-color: black;
+  padding: 2em;
+  border: 2px solid white;
+  width: 40%;
+}
+
 .dash-head {
   display: flex;
   justify-content: space-between;
@@ -254,6 +314,11 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .signup form {
+  animation-name: login_anim;
+  animation-duration: 0.6s;
+}
+
+.banner-modal {
   animation-name: login_anim;
   animation-duration: 0.6s;
 }
