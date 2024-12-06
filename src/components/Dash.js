@@ -4,7 +4,8 @@ import { useState } from "react";
 import Banner from "./Banner";
 
 import NiceModal from '@ebay/nice-modal-react';
-import TestModal from "./modals/BannerUpload";
+// import TestModal from "./modals/BannerUpload"; // TEMP
+import ControlPanel from "./modals/ControlPanel";
 
 const Dash = () => {
 
@@ -12,7 +13,8 @@ const Dash = () => {
     // let [isOpen, setIsOpen] = useState(false);
 
     const on_click_banner_upload = (e) => {
-        NiceModal.show(TestModal, {name: "Test"});
+        // NiceModal.show(TestModal, {name: "Test"});
+        NiceModal.show(ControlPanel);
     }
 
     return (
@@ -20,8 +22,8 @@ const Dash = () => {
             <Banner />
             <div className="dash-head">
                 <h2>{user.username}'s board</h2>
-                <span class="material-symbols-outlined banner-upload" onClick={on_click_banner_upload}>
-                    upload_file
+                <span className="material-symbols-outlined banner-upload" onClick={on_click_banner_upload}>
+                    menu
                 </span>
             </div>
             <hr />

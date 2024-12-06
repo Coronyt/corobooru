@@ -7,6 +7,7 @@
 }
 
 body {
+  overflow: hidden; /* TEMP - Prevents body scrolling on modal render */
   margin: 0 !important;
   padding: 0 !important;
   background-color: black;
@@ -36,6 +37,9 @@ header:hover {
 /* Footer styles */
 footer {
   text-transform: lowercase;
+  position: fixed;
+  bottom: 0vh;
+  width: 100%;
   font-size: small;
   transition: all 0.1s;
   border-top: solid 2px white;
@@ -261,7 +265,7 @@ footer h4 { /* TODO - Temp selector */
 
 .banner-upload:hover {
   cursor: pointer;
-  transform: translateY(-0.1em);
+  transform: rotate(90deg);
 }
 
 .banner-ldr {
@@ -279,7 +283,7 @@ footer h4 { /* TODO - Temp selector */
   background-color: black;
   padding: 2em;
   border: 2px solid white;
-  width: 40%;
+  width: 40%; /* TEMP */
 }
 
 .dash-head {
@@ -289,13 +293,63 @@ footer h4 { /* TODO - Temp selector */
   margin-bottom: -1em;
 }
 
+/* Modal styles */
+
+/* Control panel */
+.control-panel {
+  position: absolute;
+  top: 0em;
+  right: 0em;
+  background-color: black;
+  padding: 2em;
+  /* margin-top: 4em; */
+  border-left: 2px solid white;
+  /* border-bottom: 2px solid white; */
+  /* border-top: 2px solid white; */
+  width: 15%; /* TEMP */
+  height: 100vh; /* TEMP */
+}
+
+.panel-title {
+  display: flex;
+  justify-content: center;
+  /* text-transform: uppercase;
+  letter-spacing: 3px; */
+  scale: 3;
+  padding-bottom: 1em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.panel-entry {
+  border-top: 2px solid white;
+  padding-left: 1em;
+  margin-left: -2em;
+  margin-right: -2em;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.panel-entry:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+  font-weight: bold;
+  background-color: rgba(200, 200, 255, 0.02); /* Borrowed from login form button */
+}
+
+.panel-bookend {
+  border-top: 2px solid white;
+  margin-left: -2em;
+  margin-right: -2em;
+}
+
 /* Auxiliary styles */
 .content {
   margin-top: 1em;
   margin-bottom: 1em;
   margin-left: 2em;
   margin-right: 2em;
-  min-height: 800px; /* TODO - Can I connect this to a media query? */
+  min-height: 100vh; /* TODO - Can I connect this to a media query? */
 }
 
 /* Animation testing */
@@ -305,6 +359,15 @@ footer h4 { /* TODO - Temp selector */
   }
   to {
     transform: rotate3d(0, 0, 0, 0deg);
+  }
+}
+
+@keyframes panel_anim {
+  from {
+    transform: translateX(20em);
+  }
+  to {
+    transform: translateX(0em);
   }
 }
 
@@ -320,5 +383,10 @@ footer h4 { /* TODO - Temp selector */
 
 .banner-modal {
   animation-name: login_anim;
+  animation-duration: 0.6s;
+}
+
+.control-panel {
+  animation-name: panel_anim;
   animation-duration: 0.6s;
 }
