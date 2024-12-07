@@ -286,6 +286,17 @@ footer h4 { /* TODO - Temp selector */
   width: 40%; /* TEMP */
 }
 
+.image-modal {
+  position: absolute;
+  top: 1em;
+  /* left: 1em; */
+  right: 1em;
+  background-color: black;
+  padding: 2em;
+  border: 2px solid white;
+  width: 40%; /* TEMP */
+}
+
 .dash-head {
   display: flex;
   justify-content: space-between;

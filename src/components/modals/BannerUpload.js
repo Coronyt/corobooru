@@ -1,9 +1,4 @@
 import NiceModal, { useModal } from '@ebay/nice-modal-react';
-// import { useNavigate } from "react-router-dom";
-
-import { useAuthContext } from "../../hooks/useAuthContext";
-
-import { useState } from "react";
 import { useBannerUpload } from "../../hooks/useBannerUpload";
 
 export default NiceModal.create((name) => {

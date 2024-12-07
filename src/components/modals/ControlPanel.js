@@ -1,5 +1,6 @@
 import NiceModal, { useModal } from '@ebay/nice-modal-react';
 import BannerUpload from "./BannerUpload";
+import ImageUpload from "./ImageUpload";
 
 export default NiceModal.create((name) => {
     const modal = useModal();
@@ -8,8 +9,8 @@ export default NiceModal.create((name) => {
         NiceModal.show(BannerUpload);
     }
 
-    const on_click_post_image = (e) => {
-        // TODO
+    const on_click_image_upload = (e) => {
+        NiceModal.show(ImageUpload);
     }
 
     return (
@@ -23,7 +24,7 @@ export default NiceModal.create((name) => {
                 <div className="panel-entry" onClick={on_click_banner_upload}>
                     <p>Upload banner image</p>
                 </div>
-                <div className="panel-entry" onClick={on_click_post_image}>
+                <div className="panel-entry" onClick={on_click_image_upload}>
                     <p>Post image to board</p>
                 </div>
                 <div className="panel-bookend"></div>
