@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 /* Light theme "Soma" (default) */
-
 :root {
-  --error: #ffefef;
   --transparent: rgba(255, 255, 255, 0);
   --font-default: rgb(40, 40, 40);
   --frosted-gray-1: rgba(220, 220, 220, 1); /* Main app background */
@@ -32,9 +30,9 @@ body {
 
 /* Header styles */
 header {
+  background-color: var(--frosted-gray-2);
   padding-bottom: 0.5em;
   transition: all 0.1s;
-  background-color: var(--frosted-gray-2);
 }
 
 header:hover {
@@ -43,13 +41,13 @@ header:hover {
 
 /* Footer styles */
 footer {
-  text-transform: lowercase;
-  position: fixed;
-  bottom: 0vh;
-  width: 100%;
-  font-size: small;
-  transition: all 0.1s;
   background-color: var(--frosted-gray-2);
+  bottom: 0vh;
+  font-size: small;
+  position: fixed;
+  text-transform: lowercase;
+  transition: all 0.1s;
+  width: 100%;
 }
 
 footer:hover {
@@ -57,16 +55,16 @@ footer:hover {
 }
 
 footer h4 { /* TODO - Temp selector */
-  text-align: center;
+ text-align: center;
 }
 
 /* Navbar styles */
 .navbar {
-  margin-bottom: 0.6em;
-  min-height: 2em;
-  max-height: 2em;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.6em;
+  max-height: 2em;
+  min-height: 2em;
 }
 
 .navbar a {
@@ -90,9 +88,9 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .navbar .logged-out a {
-  text-transform: lowercase;
   font-size: small;
   margin-left: 1.3em;
+  text-transform: lowercase;
   transition: all 0.1s;
 }
 
@@ -104,8 +102,8 @@ footer h4 { /* TODO - Temp selector */
   display: flex;
   margin-right: 1em;
   margin-top: 0.8em;
-  transition: all 0.3s;
   transform: scale(1);
+  transition: all 0.3s;
 }
 
 .navbar .logged-in span:hover {
@@ -114,162 +112,92 @@ footer h4 { /* TODO - Temp selector */
 }
 
 /* Landing styles */
-/* .landing {
-  min-height: 800px;
-} */
-
-.landing h2 { /* TODO - Temp selector */
+.landing h2 {
   font-size: medium;
 }
 
-/* Login and signup styles (?) */
-.login {
-  /* align-items: center; */
-  display: flex;
+/* Login and signup styles */
+.auth {
   align-items: center;
+  display: flex;
   justify-content: center;
 }
 
-.login form {
-  padding: 2em;
-  margin-top: -20em;
-  min-width: 16em;
+.auth form {
   background-color: var(--frosted-gray-2);
   border-radius: 1em;
+  margin-top: -20em;
+  min-width: 16em;
+  padding: 2em;
 }
 
-.login form * {
+.auth form * {
   display: block;
   margin-top: 1em;
 }
 
-.login form h3 {
+.auth form h3 {
   margin-bottom: 2em;
 }
 
-.login form label {
+.auth form label {
   font-weight: bold;
 }
 
-.login * input {
+.auth * input {
   background-color: var(--frosted-input-bg);
   border: none;
-  min-width: 16em;
   border-radius: 0.2em;
-}
-
-.login * input:focus {
-  background-color: var(--frosted-input-em);
-  outline: none;
-  font-weight: bold;
-}
-
-.login form button {
-  background-color: var(--frosted-gray-3);
-  text-transform: uppercase;
-  min-width: 6em;
-  transition: all 0.2s;
-  border-style: none;
-  padding: 0.5em 1em 0.5em 1em;
-  margin-top: 3em;
-  border-radius: 1em;
-}
-
-.login form button:hover {
-  background-color: var(--frosted-input-em);
-  transform: translateY(-3px);
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.banner-file-select {
-  color: white;
-}
-
-.banner-modal input[type="file"] {
-  font-size: medium;
-  padding: 1em;
-  margin-left: 1em;
-  background-color: var(--frosted-gray-2);
-  /* border-radius: 2em; */
-}
-
-.banner-modal input[type="file"]::before {
-  content: "Browse";
-  padding: 1em;
-  margin-right: 1em;
-  /* border-radius: 2em; */
-  background-color: rgba(200, 200, 255, 0.1);
-}
-
-.banner-modal input[type="file"]:hover {
-  content: "Browse";
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.banner-file-select::file-selector-button {
-  padding: 1em;
-  content: "Browse";
-  display: none;
-}
-
-/* TODO - Lots of duplicate styling happening here */
-
-.banner-modal-btn { /* Temporarily copy-pasted from login form button styles */
-  background-color: var(--transparent);
-  text-transform: uppercase;
-  min-width: 6em;
-  transition: all 0.2s;
-  border-style: outset;
-  border-color: white;
-  padding: 0.5em 1em 0.5em 1em;
-  margin-top: 2em; /* margin-top differs from login form button styles */
-}
-
-.banner-modal-btn:hover {
-  background-color: rgba(200, 200, 255, 0.02);
-  transform: translateY(-3px);
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.signup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.signup form {
-  border: solid 2px white;
-  padding: 2em;
-  margin-top: -20em;
   min-width: 16em;
 }
 
-.signup form * {
-  display: block;
-  margin-top: 1em;
+.auth * input:focus {
+  background-color: var(--frosted-input-em);
+  font-weight: bold;
+  outline: none;
 }
 
-.signup form button {
-  margin-top: 2em;
-  background-color: black;
+.auth form button {
+  background-color: var(--frosted-gray-3);
+  border-radius: 1em;
+  border-style: none;
+  margin-top: 3em;
+  min-width: 6em;
+  padding: 0.5em 1em 0.5em 1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
 }
 
+.auth form button:hover {
+  background-color: var(--frosted-input-em);
+  cursor: pointer;
+  font-weight: bold;
+  transform: translateY(-3px);
+}
+
+/* Dash styles */
+.dash-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -1em;
+  margin-top: -0.6em;
+}
+
+/* Banner styles */
 .banner {
   display: block;
 }
 
 .banner-img {
-  width: 100%;
-  min-height: 200px;
   max-height: 300px;
+  min-height: 200px;
   object-fit: cover;
+  width: 100%;
 }
 
 .banner-upload {
-  padding-top: 0.55em;
   font-size: xx-large;
+  padding-top: 0.55em;
   transition: all 0.1s;
 }
 
@@ -279,56 +207,92 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .banner-ldr {
+  left: 50%;
   position: absolute;
   top: 20%;
-  left: 50%;
   transform: translate(-50%, -50%);
 }
 
+/* Modal styles */
 .banner-modal {
-  position: absolute;
-  top: 1em;
-  /* left: 1em; */
-  right: 1em;
   background-color: var(--frosted-gray-2);
-  padding: 2em;
   border-radius: 1em;
-  width: 40%; /* TEMP */
   filter: drop-shadow(0 0 0.2em black);
+  padding: 2em;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  width: 40%; /* TEMP */
+}
+
+.banner-modal input[type="file"] {
+  background-color: var(--frosted-gray-2);
+  font-size: medium;
+  margin-left: 1em;
+  padding: 1em;
+}
+
+.banner-modal input[type="file"]::before {
+  background-color: rgba(200, 200, 255, 0.1); /* TEMP */
+  content: "Browse";
+  margin-right: 1em;
+  padding: 1em;
+}
+
+.banner-modal input[type="file"]:hover {
+  color: rgba(255, 255, 255, 0.8); /* TEMP */
+  content: "Browse";
+}
+
+.banner-file-select {
+  color: white; /* TEMP */
+}
+
+.banner-file-select::file-selector-button {
+  content: "Browse";
+  display: none;
+  padding: 1em;
+}
+
+.banner-modal-btn {
+ background-color: var(--transparent);
+ border-color: white; /* TEMP */
+ border-style: outset;
+ margin-top: 2em;
+ min-width: 6em;
+ padding: 0.5em 1em 0.5em 1em;
+ text-transform: uppercase;
+ transition: all 0.2s;
+}
+
+.banner-modal-btn:hover {
+  background-color: var(--frosted-input-em);
+  cursor: pointer;
+  font-weight: bold;
+  transform: translateY(-3px);
 }
 
 .image-modal {
-  position: absolute;
-  top: 1em;
-  /* left: 1em; */
-  right: 1em;
-  background-color: black;
+  background-color: var(--frosted-gray-2);
+  border-radius: 1em;
+  filter: drop-shadow(0 0 0.2em black);
   padding: 2em;
-  border: 2px solid white;
+  position: absolute;
+  right: 1em;
+  top: 1em;
   width: 40%; /* TEMP */
 }
 
-.dash-head {
-  display: flex;
-  justify-content: space-between;
-  margin-top: -0.6em;
-  margin-bottom: -1em;
-}
-
-/* Modal styles */
-
 /* Control panel */
 .control-panel {
-  position: absolute;
-  top: 0em;
-  right: 0em;
   background-color: var(--frosted-gray-2);
-  padding: 2em;
-  /* border-left: 1px solid var(--font-default); */
-  width: 15%; /* TEMP */
-  height: 100vh; /* TEMP */
-  /* border-top-left-radius: 1em; */
   filter: drop-shadow(0 0 0.2em var(--frosted-gray-3));
+  height: 100vh;
+  padding: 2em;
+  position: absolute;
+  right: 0em;
+  top: 0em;
+  width: 15%;
 }
 
 .control-panel span {
@@ -338,29 +302,26 @@ footer h4 { /* TODO - Temp selector */
 .panel-title {
   display: flex;
   justify-content: center;
-  /* text-transform: uppercase;
-  letter-spacing: 3px; */
-  scale: 3;
-  padding-bottom: 1em;
-  margin-top: 2em;
   margin-bottom: 1em;
+  margin-top: 2em;
+  padding-bottom: 1em;
+  scale: 3;
 }
 
 .panel-entry {
+  background-color: var(--transparent);
   border-top: 1px solid var(--font-default);
-  padding-top: 1px;
-  padding-left: 1em;
   margin-left: -2em;
   margin-right: -2em;
+  padding-left: 1em;
+  padding-top: 1px;
   transition: all 0.3s;
-  background-color: var(--transparent);
 }
 
 .panel-entry:hover {
-  transform: translateY(-3px);
   cursor: pointer;
   font-weight: bold;
-  /* background-color: var(--frosted-gray-em); Borrowed from login form button */
+  transform: translateY(-3px);
 }
 
 .panel-bookend {
@@ -371,15 +332,15 @@ footer h4 { /* TODO - Temp selector */
 
 /* Auxiliary styles */
 .content {
-  margin-top: 1em;
   margin-bottom: 1em;
   margin-left: 2em;
   margin-right: 2em;
+  margin-top: 1em;
   min-height: 100vh; /* TODO - Can I connect this to a media query? */
 }
 
-/* Animation testing */
-@keyframes login_anim {
+/* Animations */
+@keyframes popup_anim {
   from {
     transform: rotate3d(1, 0, 0, 90deg);
   }
@@ -398,21 +359,21 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .login form {
-  animation-name: login_anim;
   animation-duration: 0.6s;
+  animation-name: popup_anim;
 }
 
 .signup form {
-  animation-name: login_anim;
   animation-duration: 0.6s;
+  animation-name: popup_anim;
 }
 
 .banner-modal {
-  animation-name: login_anim;
   animation-duration: 0.6s;
+  animation-name: popup_anim;
 }
 
 .control-panel {
-  animation-name: panel_anim;
   animation-duration: 0.6s;
+  animation-name: panel_anim;
 }

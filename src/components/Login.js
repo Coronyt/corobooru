@@ -17,7 +17,7 @@ const Login = () => {
 
     return (
         <div> {/* TODO - Need to change form elements to use more semantic HTML attributes (best practice) */}
-            <div className="login content">
+            <div className="auth content">
                 <form onSubmit={submit}>
                     <h3>Login to your account</h3>
                     <label>Username</label>

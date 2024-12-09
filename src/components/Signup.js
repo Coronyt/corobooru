@@ -18,7 +18,7 @@ const Signup = () => {
 
     return (
         <div> {/* TODO - Need to change form elements to use more semantic HTML attributes (best practice) */}
-            <div className="login content"> {/* TODO - Change className to "signup content" after organizing CSS */}
+            <div className="auth content">
                 <form onSubmit={submit}> {/* TODO - Will need to incorporate some kind of email verification / captcha process here */}
                     <h3>Create a new account</h3>
                     <label>Email</label>
