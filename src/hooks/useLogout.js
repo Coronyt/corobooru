@@ -1,4 +1,3 @@
-// Hooking into app auth context so we can manipulate session auth data within this hook
 import { useAuthContext } from "../hooks/useAuthContext";
 
 export const useLogout = () => {

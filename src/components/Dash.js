@@ -1,10 +1,9 @@
 // import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react' // TODO - Uninstall this package
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useState } from "react";
-import Banner from "./Banner";
 
-import NiceModal from '@ebay/nice-modal-react';
+import Banner from "./Banner";
 import ControlPanel from "./modals/ControlPanel";
+import NiceModal from '@ebay/nice-modal-react';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Dash = () => {
 

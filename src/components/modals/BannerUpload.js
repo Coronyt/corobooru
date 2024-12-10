@@ -1,4 +1,5 @@
 import NiceModal, { useModal } from '@ebay/nice-modal-react';
+
 import { useBannerUpload } from "../../hooks/useBannerUpload";
 
 export default NiceModal.create((name) => {

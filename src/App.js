@@ -1,11 +1,12 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useAuthContext } from "./hooks/useAuthContext"
-import Landing from "./components/Landing";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
 import Dash from "./components/Dash";
+import Footer from "./components/Footer";
+import Landing from "./components/Landing";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
+import Signup from "./components/Signup";
+import { useAuthContext } from "./hooks/useAuthContext"
 
 function App() {
   // Hooking into app auth state context
