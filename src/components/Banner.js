@@ -17,7 +17,6 @@ const load_img = (img, url) => {
 const Banner = () => {
 
     const { user } = useAuthContext();
-    // const [banner, setBanner] = useState("");
     const [pending, setPending] = useState(true);
 
     console.log("Banner loaded");
@@ -25,12 +24,6 @@ const Banner = () => {
 
     useEffect(() => {
         const fetch_banner = async () => {
-            // Fetching banner by username w/ authorization
-            // const response = await fetch(`/api/find/banner/${user.username}`, {
-            //     headers: {"Authorization": `Bearer ${user.token}`}
-            // });
-            // if (response.ok) {}
-            // document.getElementById("banner-img").setAttribute("src", `/api/find/banner/${user.username}`);
             const img = document.getElementById("banner-img");
             await load_img(img, `/api/find/banner/${user.username}`);
             console.log("Loaded image");

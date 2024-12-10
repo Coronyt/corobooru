@@ -340,7 +340,7 @@ footer h4 { /* TODO - Temp selector */
 }
 
 /* Animations */
-@keyframes popup_anim {
+@keyframes unfold {
   from {
     transform: rotate3d(1, 0, 0, 90deg);
   }
@@ -349,7 +349,7 @@ footer h4 { /* TODO - Temp selector */
   }
 }
 
-@keyframes panel_anim {
+@keyframes slide_out {
   from {
     transform: translateX(20em);
   }
@@ -358,22 +358,17 @@ footer h4 { /* TODO - Temp selector */
   }
 }
 
-.login form {
+.auth form {
   animation-duration: 0.6s;
-  animation-name: popup_anim;
-}
-
-.signup form {
-  animation-duration: 0.6s;
-  animation-name: popup_anim;
+  animation-name: unfold;
 }
 
 .banner-modal {
   animation-duration: 0.6s;
-  animation-name: popup_anim;
+  animation-name: unfold;
 }
 
 .control-panel {
   animation-duration: 0.6s;
-  animation-name: panel_anim;
+  animation-name: slide_out;
 }
