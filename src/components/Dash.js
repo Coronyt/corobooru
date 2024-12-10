@@ -1,5 +1,3 @@
-// import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react' // TODO - Uninstall this package
-
 import Banner from "./Banner";
 import ControlPanel from "./modals/ControlPanel";
 import NiceModal from '@ebay/nice-modal-react';
