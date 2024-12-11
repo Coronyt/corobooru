@@ -19,7 +19,8 @@
 }
 
 body {
-  overflow: hidden; /* TEMP - Prevents body scrolling on modal render */
+  /* overflow: hidden; TEMP - Prevents body scrolling on modal render */
+  overflow-x: hidden;
   margin: 0 !important;
   padding: 0 !important;
   background-color: var(--frosted-gray-1);
@@ -181,6 +182,73 @@ footer h4 { /* TODO - Temp selector */
   justify-content: space-between;
   margin-bottom: -1em;
   margin-top: -0.6em;
+}
+
+.dash-body {
+  column-gap: 1em;
+  display: grid;
+  padding-top: 0.6em;
+}
+
+/* Taghub styles */
+.taghub {
+  background-color: rgba(180, 180, 180, 0.2);
+  grid-column-end: 2;
+  grid-column-start: 1;
+  min-height: 100px;
+}
+
+.taghub ul {
+  list-style-type: none;
+  margin-left: -2.5em;
+}
+
+.tag {
+  background-color: rgba(220, 165, 30, 0.325);
+  cursor: pointer;
+  padding: 0.2em;
+  transition: all 0.3s;
+}
+
+.tag:hover {
+  background-color: rgba(220, 165, 30, 0.625);
+  transform: translateX(0.2em);
+}
+
+/* Booru styles */
+.booru-main {
+  align-content: space-between;
+  background-color: rgba(180, 180, 180, 0.2);
+  display: flex;
+  grid-column-end: 6;
+  grid-column-start: 2;
+  justify-content: space-between;
+}
+
+.booru-grid {
+  display: block;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.booru-grid-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thumbnail {
+  background-color: rgba(220, 165, 30, 0.325);
+  display: flex;
+  height: 10em;
+  justify-content: center;
+  margin: 0.2em;
+  padding: 0.2em;
+  transition: all 0.2s;
+  width: 10em;
+}
+
+.thumbnail:hover {
+  scale: 1.08;
 }
 
 /* Banner styles */

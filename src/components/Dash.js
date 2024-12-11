@@ -1,6 +1,8 @@
 import Banner from "./Banner";
+import Booru from "./Booru";
 import ControlPanel from "./modals/ControlPanel";
 import NiceModal from '@ebay/nice-modal-react';
+import Taghub from "./Taghub";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Dash = () => {
@@ -19,8 +21,11 @@ const Dash = () => {
                 <span className="material-symbols-outlined banner-upload" onClick={on_click_banner_upload}>
                     menu
                 </span>
+            </div> <hr />
+            <div className="dash-body">
+                <Taghub />
+                <Booru />
             </div>
-            <hr />
         </div>
     );
 }
