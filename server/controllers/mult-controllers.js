@@ -44,7 +44,19 @@ const assign_to_booru = async (req, res) => {
             // If the tag does not exist as a key in the booru map, create tag and assign image
                 // The tag will map to the ObjectID of the Image document in the user's collection
                 // And the Image document will contain image details and references to full and thumb images
-    res.status(201).json({message: "Image successfully uploaded"});
+    // console.log(req.body.tags);
+        // Access tags through req.body.tags;
+    try {
+        // TODO
+        const tags = req.body.tags; // Right now it is only accepting a single tag
+        // TODO - Does tag exist in user booru?
+            // TODO - If yes, append new Image to the tag value (array)
+                // TODO - Need to define schema for Image documents
+            // TODO - If no, create a new key for the tag in the booru and then append
+        res.status(201).json({message: "Image successfully uploaded"});
+    } catch (err) {
+        res.status(400).json({error: err.message}) // Generic error handler
+    }
 }
 
 module.exports = {

@@ -1,14 +1,14 @@
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
 
-export const useImageUpload = (file, tags) => {
+export const useImageUpload = () => {
     // Initializing states (err & pending)
     const [error, setError] = useState(null);
     const [pending, setPending] = useState(null);
     // Pulling necessary refs from context provider
     const { user } = useAuthContext();
     // TODO - May tweak the below code in the future to handle uploads of multiple files at once
-    const image_upload = async (file) => {
+    const image_upload = async (file, tags) => {
         setPending(true); // Set pending
         setError(null); // Reset errors
         const data = new FormData();

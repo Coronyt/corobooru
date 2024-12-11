@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Importing Image schema (to act as sub-schemas within "booru")
+const Image = require("./Image");
+
 // Importing the third-party package "bcrypt" to handle password hashing
 const bcrypt = require("bcrypt");
 
@@ -25,6 +28,10 @@ const user_schema = new Schema({
     banner: {
         type: String,
         default: ""
+    },
+    booru: {
+        type: Image,
+        default: {}
     }
 });
 

@@ -10,7 +10,7 @@ export default NiceModal.create((name) => {
     const submit = async (e) => {
         e.preventDefault();
         const input = document.getElementById("image-file");
-        const tags = document.getElementById("image-tags");
+        const tags = document.getElementById("image-tags").value;
         await image_upload(input.files[0], tags);
         window.location.reload();
     }

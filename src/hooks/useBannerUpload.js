@@ -1,7 +1,7 @@
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
 
-export const useBannerUpload = (file) => {
+export const useBannerUpload = () => {
     // Initializing states (err & pending)
     const [error, setError] = useState(null);
     const [pending, setPending] = useState(null);
