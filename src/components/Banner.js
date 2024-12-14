@@ -19,14 +19,10 @@ const Banner = () => {
     const { user } = useAuthContext();
     const [pending, setPending] = useState(true);
 
-    console.log("Banner loaded");
-    console.log(user.username)
-
     useEffect(() => {
         const fetch_banner = async () => {
             const img = document.getElementById("banner-img");
             await load_img(img, `/api/find/banner/${user.username}`);
-            console.log("Loaded image");
             setPending(false);
         }
         // Only make request if user is logged in

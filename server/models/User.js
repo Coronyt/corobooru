@@ -107,6 +107,7 @@ user_schema.statics.post_to_booru = async function (full_ID, tags, username) {
     img.tags = tags;
     // Updating booru
     user.booru.set(tags, img); // TODO - Will eventually have this save a new key-value pair for every given tag
+    // TODO - At the moment the above line is mapping tags to images directly - it needs to map tags to Image arrays
     const result = await user.save();
     return result;
 }

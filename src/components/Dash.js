@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import Banner from "./Banner";
 import Booru from "./Booru";
 import ControlPanel from "./modals/ControlPanel";
@@ -9,9 +11,28 @@ const Dash = () => {
 
     const { user } = useAuthContext();
 
+    const [booru, setBooru] = useState({});
+
     const on_click_banner_upload = (e) => {
         NiceModal.show(ControlPanel);
     }
+    
+    useEffect(() => {
+        const load_booru = async () => {
+            // TODO - Currently the booru will only be fetched if user is logged in
+                // Will have to implement handlers for public booru content
+            const res = await fetch(`/api/find/booru/${user.username}`, {
+                headers: {"Authorization": `Bearer ${user.token}`}
+            });
+            const json = await res.json();
+            if (res.ok) {
+                console.log(json);
+            }
+        }
+        if (user) {
+            load_booru();
+        }
+    }, [user]);
 
     return (
         <div className="dash content">

@@ -51,9 +51,19 @@ const assign_to_booru = async (req, res) => {
     }
 }
 
+const find_booru = async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.user });
+        res.status(201).json(user.booru);
+    } catch (err) {
+        res.status(400).json({error: err.message}) // Generic error handler
+    }
+}
+
 module.exports = {
     assign_banner,
     find_banner,
     upload_to_booru,
-    assign_to_booru
+    assign_to_booru,
+    find_booru
 }
