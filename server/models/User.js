@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Importing Image schema (to act as sub-schema within "booru")
 const Image = require("./schemas/Image");
+const Booru = require("./schemas/Booru");
 
 // Importing the third-party package "bcrypt" to handle password hashing
 const bcrypt = require("bcrypt");
@@ -30,9 +30,8 @@ const user_schema = new Schema({
         default: ""
     },
     booru: {
-        type: Map,
-        of: Image,
-        default: {}
+        type: Booru,
+        required: true
     }
 }, { collection: "__users" });
 
@@ -75,7 +74,15 @@ user_schema.statics.signup = async function (email, username, password) {
     // Salting and hashing password
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-    const user = await this.create({email, username, password: hash});
+    // Creating Booru from schema
+    const booru = new Schema({
+        data: {
+            type: Booru,
+            default: {}
+        }
+    });
+    // Creating user in database
+    const user = await this.create({email, username, password: hash, booru});
     // Returning new user document
     return user;
 }
@@ -106,7 +113,9 @@ user_schema.statics.post_to_booru = async function (full_ID, tags, username) {
     img.thumb = null; // TEMP
     img.tags = tags;
     // Updating booru
-    user.booru.set(tags, img); // TODO - Will eventually have this save a new key-value pair for every given tag
+    user.booru.imgs.push(img);
+    user.booru.tags.set(tags, img);
+    // user.booru.set(tags, img); // TODO - Will eventually have this save a new key-value pair for every given tag
     // TODO - At the moment the above line is mapping tags to images directly - it needs to map tags to Image arrays
     const result = await user.save();
     return result;

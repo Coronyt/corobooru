@@ -54,7 +54,10 @@ const assign_to_booru = async (req, res) => {
 const find_booru = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
-        res.status(201).json(user.booru);
+        res.status(201).json({
+            imgs: user.booru.imgs,
+            tags: user.booru.tags
+        });
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
     }

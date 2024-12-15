@@ -24,9 +24,10 @@ const Dash = () => {
             const res = await fetch(`/api/find/booru/${user.username}`, {
                 headers: {"Authorization": `Bearer ${user.token}`}
             });
-            const json = await res.json();
+            // const json = await res.json();
+            console.log(res);
             if (res.ok) {
-                console.log(json);
+                // console.log(json);
             }
         }
         if (user) {
