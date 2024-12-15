@@ -54,10 +54,34 @@ const assign_to_booru = async (req, res) => {
 const find_booru = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
-        res.status(201).json({
+        res.status(200).json({
             imgs: user.booru.imgs,
             tags: user.booru.tags
         });
+    } catch (err) {
+        res.status(400).json({error: err.message}) // Generic error handler
+    }
+}
+
+const find_img_full = async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.user });
+        const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
+        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_full` });
+        const _id = new mongoose.Types.ObjectId(`${req.params.id}`);
+        bucket.openDownloadStream(_id).pipe(res);
+    } catch (err) {
+        res.status(400).json({error: err.message}) // Generic error handler
+    }
+}
+
+const find_img_thumb = async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.user });
+        const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
+        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_thumb` });
+        const _id = new mongoose.Types.ObjectId(`${req.params.id}`);
+        bucket.openDownloadStream(_id).pipe(res);
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
     }
@@ -68,5 +92,7 @@ module.exports = {
     find_banner,
     upload_to_booru,
     assign_to_booru,
-    find_booru
+    find_booru,
+    find_img_full,
+    find_img_thumb
 }

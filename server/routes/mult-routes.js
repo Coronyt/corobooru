@@ -10,7 +10,9 @@ const {
     find_banner,
     upload_to_booru,
     assign_to_booru,
-    find_booru
+    find_booru,
+    find_img_full,
+    find_img_thumb
 } = require("../controllers/mult-controllers");
 
 // TODO - Just making a note here cause I will need to handle this later ... MUST check that the file is an IMAGE before allowing any uploads
@@ -31,9 +33,8 @@ router.post("/upload/booru/:user", upload_to_booru, assign_to_booru)
 
 // Retrieval routes
 router.get("/find/banner/:user", find_banner); // Will return a stream of the user's banner
-router.get("/find/booru/:user", find_booru); // Will return a copy of the user's booru map
-// TODO - Implement below routes for fetching by _id
-// router.get("/find/booru/:user/imgs_full/:id", () => {});
-// router.get("/find/booru/:user/imgs_thumb/:id", () => {});
+router.get("/find/booru/:user", find_booru); // Will return a copy of the user's booru
+router.get("/find/booru/:user/imgs_full/:id", find_img_full); // Full image by _id
+router.get("/find/booru/:user/imgs_thumb/:id", find_img_thumb); // Thumbnail by _id
 
 module.exports = router;
