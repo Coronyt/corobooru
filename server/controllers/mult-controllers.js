@@ -7,7 +7,7 @@ const {
 
 const assign_banner = async (req, res) => {
     try {
-        await User.set_banner(req.body.user, req.file.id); // Should I be instancing and assigning these variables first?
+        await User.set_banner(req.params.user, req.file.id); // Should I be instancing and assigning these variables first?
         res.status(201).json({message: "Image successfully uploaded"});
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler

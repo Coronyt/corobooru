@@ -13,10 +13,9 @@ export const useBannerUpload = () => {
         setError(null); // Reset errors
         const data = new FormData();
         data.append('file', file);
-        data.append('user', user.username);
         // TODO - Method should be POST or PATCH depending on whether or not the user already has a banner
             // At the moment it is just uploading a new image every time and not deleting the old one
-        const res = await fetch("/api/upload/banner", {
+        const res = await fetch(`/api/upload/banner/${user.username}`, {
             method: "POST",
             body: data
         })
