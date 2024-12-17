@@ -248,6 +248,7 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .thumbnail:hover {
+  cursor: pointer;
   scale: 1.08;
 }
 
