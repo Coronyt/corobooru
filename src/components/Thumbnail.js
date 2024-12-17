@@ -1,7 +1,7 @@
-const Thumbnail = () => {
+const Thumbnail = ({img}) => {
     return (
         <div className="thumbnail">
-            <p>example_thumbnail</p>
+            <p>{img.tags}</p>
         </div>
     );
 }

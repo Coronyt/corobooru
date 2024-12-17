@@ -1,6 +1,6 @@
-const Tag = (props) => {
+const Tag = ({tag}) => {
     return (
-        <li className="tag">{props.tag}</li>
+        <li className="tag">{tag}</li>
     );
 }
  
