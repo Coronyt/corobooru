@@ -38,7 +38,7 @@ const Banner = () => {
                 <l-dot-stream
                     size="60"
                     speed="2.5"
-                    color="white"
+                    color="var(--font-default)"
                 ></l-dot-stream>
             </div>}
             <img src="" alt="" className="banner-img" id="banner-img"/>
