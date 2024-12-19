@@ -36,7 +36,7 @@ const find_banner = async (req, res) => {
 
 const upload_to_booru = async (req, res, next) => {
     const user = await User.findOne({ username: req.params.user });
-    const multerware = upload(`${user._id}.imgs_full`).single("file");
+    const multerware = upload("imgs_full").single("file");
     multerware(req, res, next);
 }
 
@@ -45,7 +45,7 @@ const thumb_gen_aux = async (req, res, _id) => {
         // 1. Open bucket to imgs_full dir in database
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
-        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_full` });
+        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_full" });
         // 2. Read from stream into local buffer
         const rstream = bucket.openDownloadStream(_id);
         let buffer = Buffer.alloc(0);
@@ -59,7 +59,7 @@ const thumb_gen_aux = async (req, res, _id) => {
             console.log("Thumbnail created");
             console.log(thumbnail);
             // 4. Pipe thumbnail to imgs_thumb dir
-            const res_bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_thumb` });
+            const res_bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_thumb" });
             const wstream = res_bucket.openUploadStream(""); // TODO - Will need to give something for thumb filename
             // ___
             const readable = new Readable();
@@ -116,7 +116,7 @@ const find_img_full = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
-        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_full` });
+        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_full" });
         const _id = new mongoose.Types.ObjectId(`${req.params.id}`);
         bucket.openDownloadStream(_id).pipe(res);
     } catch (err) {
@@ -128,7 +128,7 @@ const find_img_thumb = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
-        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_thumb` });
+        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_thumb" });
         const _id = new mongoose.Types.ObjectId(`${req.params.id}`);
         bucket.openDownloadStream(_id).pipe(res);
     } catch (err) {
