@@ -1,6 +1,10 @@
 const User = require("../models/User");
 const mongoose = require("mongoose");
 
+const fs  = require("fs");
+const { Readable } = require("stream");
+const to_thumbnail = require("image-thumbnail");
+
 const {
     upload
 } = require("../middleware/mult-engine");
@@ -33,12 +37,57 @@ const find_banner = async (req, res) => {
 const upload_to_booru = async (req, res, next) => {
     const user = await User.findOne({ username: req.params.user });
     const multerware = upload(`${user._id}.imgs_full`).single("file");
-    // TODO - Need to upload thumbnail here too, somehow ...
     multerware(req, res, next);
+}
+
+const thumb_gen_aux = async (req, res, _id) => {
+    try {
+        // 1. Open bucket to imgs_full dir in database
+        const user = await User.findOne({ username: req.params.user });
+        const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
+        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_full` });
+        // 2. Read from stream into local buffer
+        const rstream = bucket.openDownloadStream(_id);
+        let buffer = Buffer.alloc(0);
+        rstream.on("data", (chunk) => {
+            buffer = Buffer.concat([buffer, chunk]);
+        });
+        rstream.on("end", async (chunk) => {
+            console.log(buffer);
+            // 3. Create thumbnail from buffer data
+            const thumbnail = await to_thumbnail(buffer);
+            console.log("Thumbnail created");
+            console.log(thumbnail);
+            // 4. Pipe thumbnail to imgs_thumb dir
+            const res_bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: `${user._id}.imgs_thumb` });
+            const wstream = res_bucket.openUploadStream(""); // TODO - Will need to give something for thumb filename
+            // ___
+            const readable = new Readable();
+            readable._read = () => {}
+            readable.push(thumbnail); // Wrap thumbnail buffer in Readable
+            readable.push(null); // Denote end of stream with null value
+            readable.pipe(wstream);
+            // ___
+            console.log("Finished thumb_gen_aux");
+        });
+        // ___
+        return;
+    } catch (err) {
+        res.status(400).json({error: err.message}) // Generic error handler
+    }
 }
 
 const assign_to_booru = async (req, res) => {
     try {
+        // ___
+        // Going to try and generate the thumbnail here
+            // 1. Open bucket to imgs_full dir in database
+            // 2. Read from stream into local buffer
+            // 3. Create thumbnail from buffer data
+            // 4. Pipe thumbnail to imgs_thumb dir
+        const _id = new mongoose.Types.ObjectId(`${req.file.id.toString()}`);
+        const thumb_id = await thumb_gen_aux(req, res, _id);
+        // ___
         // TODO - Does tag exist in user booru?
         // Right now it's only accepting a single tag
         await User.post_to_booru(req.file.id, req.body.tags, req.params.user);
