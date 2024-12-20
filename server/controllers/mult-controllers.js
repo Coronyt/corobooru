@@ -55,12 +55,18 @@ const thumb_gen_aux = async (req, res, _id) => {
         rstream.on("end", async (chunk) => {
             console.log(buffer);
             // 3. Create thumbnail from buffer data
-            const thumbnail = await to_thumbnail(buffer);
+            const thumbnail = await to_thumbnail(buffer, {
+                percentage: 30,
+                width: 200,
+                height: 200,
+                jpegOptions: {force: true},
+                fit: "cover"
+            });
             console.log("Thumbnail created");
             console.log(thumbnail);
             // 4. Pipe thumbnail to imgs_thumb dir
             const res_bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_thumb" });
-            const wstream = res_bucket.openUploadStream(""); // TODO - Will need to give something for thumb filename
+            const wstream = res_bucket.openUploadStream("thumbof_" + _id.toString());
             // ___
             const readable = new Readable();
             readable._read = () => {}
@@ -129,8 +135,7 @@ const find_img_thumb = async (req, res) => {
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
         const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_thumb" });
-        const _id = new mongoose.Types.ObjectId(`${req.params.id}`);
-        bucket.openDownloadStream(_id).pipe(res);
+        bucket.openDownloadStreamByName(`thumbof_${req.params.id}`).pipe(res);
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
     }

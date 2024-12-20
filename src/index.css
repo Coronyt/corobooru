@@ -255,7 +255,7 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .thumbnail {
-  background: var(--frosted-panel-bg-1);
+  background: var(--transparent);
   border-radius: 1em;
   display: flex;
   font-weight: bold;
@@ -270,6 +270,14 @@ footer h4 { /* TODO - Temp selector */
 .thumbnail:hover {
   cursor: pointer;
   scale: 1.08;
+}
+
+.thumb-img {
+  border-radius: 0.6em;
+}
+
+.thumb-ldr {
+  margin-top: 4em;
 }
 
 /* Banner styles */
