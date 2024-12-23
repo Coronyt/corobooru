@@ -209,6 +209,7 @@ footer h4 { /* TODO - Temp selector */
   grid-column-end: 2;
   grid-column-start: 1;
   min-height: 100px;
+  min-width: 220px;
 }
 
 .taghub ul {
@@ -244,14 +245,12 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .booru-grid {
-  display: block;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.booru-grid-row {
+  align-content: start;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: start;
+  row-gap: 0.4em;
+  width: 100%;
 }
 
 .thumbnail {
@@ -274,6 +273,9 @@ footer h4 { /* TODO - Temp selector */
 
 .thumb-img {
   border-radius: 0.6em;
+  max-height: 10em;
+  max-width: 10em;
+  object-fit: cover;
 }
 
 .thumb-ldr {
