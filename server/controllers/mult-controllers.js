@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Booru = require("../models/Booru");
+
 const mongoose = require("mongoose");
 
 const fs  = require("fs");
@@ -11,7 +13,7 @@ const {
 
 const assign_banner = async (req, res) => {
     try {
-        await User.set_banner(req.params.user, req.file.id); // Should I be instancing and assigning these variables first?
+        await User.set_banner(req.params.user, req.file.id);
         res.status(201).json({message: "Image successfully uploaded"});
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
@@ -22,7 +24,7 @@ const find_banner = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
-        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "_banners" });
+        const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "banners" });
         if (user.banner) {
             const _id = new mongoose.Types.ObjectId(`${user.banner}`);
             bucket.openDownloadStream(_id).pipe(res); // Will take _id as arg
@@ -109,9 +111,10 @@ const assign_to_booru = async (req, res) => {
 const find_booru = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
+        const booru = await Booru.findById(user.booru);
         res.status(200).json({
-            imgs: user.booru.imgs,
-            tags: user.booru.tags
+            imgs: booru.imgs,
+            tags: booru.tags
         });
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler

@@ -5,9 +5,6 @@ const img_schema = new Schema({
     full: { // ObjectID of full res image in $user_id.imgs_full.files
         type: String,
     },
-    thumb: { // ObjectID of thumbnail image in $user_id.imgs_thumb.files
-        type: String,
-    },
     tags: { // All image tags (each tag should be a valid key for booru map)
         type: Array,
     },
