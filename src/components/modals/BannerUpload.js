@@ -18,7 +18,7 @@ export default NiceModal.create((name) => {
         <div className="banner-modal">
             <h3>Upload a banner image</h3>
             <form onSubmit={submit}>
-                <label>Select file:</label>
+                <label>Select file:</label> <br />
                 <input type="file" className="banner-file-select" id="banner-file"/> <br />
                 <button className="banner-modal-btn">Upload banner</button>
             </form>

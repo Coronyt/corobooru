@@ -25,12 +25,14 @@ const Login = () => {
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        autoComplete="off" // TODO - This is temporary; need to check if autocomplete will break input field CSS
                     />
                     <label>Password</label>
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="off" // TODO - This is temporary; need to check if autocomplete will break input field CSS
                     />
                     <button disabled={pending}>Login</button>
                     {error && <div className="error">{error}</div>}

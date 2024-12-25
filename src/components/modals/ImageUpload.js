@@ -17,12 +17,14 @@ export default NiceModal.create((name) => {
 
     return (
         <div className="image-modal">
-            <h3>image-modal</h3>
+            <h3>Post to your board</h3>
             <form onSubmit={submit}>
-                <label>Select file: </label>
-                <input type="file" className="image-file-select" id="image-file"/> <br />
+                <label>Select image file(s): </label> <br />
+                <input type="file" className="image-file-select" id="image-file"/>
+                <br /> <br />
                 <label>Tags: </label>
-                <input type="text" id="image-tags" />
+                <input type="text" id="image-tags" placeholder="List tags here (separate with spaces)" autoComplete="off" spellCheck="false"/>
+                <br />
                 <button className="image-modal-btn">Post image</button>
             </form>
         </div>

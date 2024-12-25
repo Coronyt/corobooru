@@ -22,6 +22,31 @@
   --frosted-panel-bg-5: linear-gradient(90deg, rgba(220, 165, 30, 0.2) 20%, rgba(60, 60, 220, 0.2) 100%);
   /* --frosted-panel-bg-6: Frosted blue gradient, light top to darker bottom, lightly transparent */
   --frosted-panel-bg-6: linear-gradient(0deg, rgb(80, 80, 145, 0.6) 20%, rgb(180, 180, 230, 1) 100%);
+  /* --frosted-steel-1: Rich blue gradient with stainless steel texture */
+  --frosted-steel-1: repeating-linear-gradient(45deg,
+    rgba(0,0,0,0.08),
+    transparent,
+    rgba(0,0,0,0.02),
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.01),
+    rgba(0,0,0,0.07),
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.02),
+    rgba(0,0,0,0.04),
+    rgba(0,0,0,0.04),
+    rgba(0,0,0,0.02),
+    rgba(0,0,0,0.1),
+    rgba(0,0,0,0.07),
+    rgba(0,0,0,0.02),
+    rgba(0,0,0,0.07) 3px),
+    linear-gradient(135deg, rgb(40, 160, 255),rgb(50, 75, 130));
+  /* --frosted-steel-2: Light blue gradient with stainless steel texture */
+  --frosted-steel-2: repeating-linear-gradient(135deg,
+    rgba(0,0,0,0.04) 0px,
+    rgba(0,0,0,0.04) 2px,
+    transparent 2px,
+    transparent 4px),
+    linear-gradient(135deg, rgb(165, 230, 235),rgb(115, 115, 230));
 }
 
 /* Universal styles */
@@ -316,37 +341,52 @@ footer h4 { /* TODO - Temp selector */
 
 /* Modal styles */
 .banner-modal {
-  background-color: var(--frosted-gray-2);
-  border-radius: 1em;
-  filter: drop-shadow(0 0 0.2em black);
+  background-image: var(--frosted-steel-2);
+  border-bottom-left-radius: 2em;
+  border-top-left-radius: 2em;
+  filter: drop-shadow(0 0 0.1em black);
+  height: 200px;
   padding: 2em;
   position: fixed;
-  right: 1em;
+  right: 0em;
   top: 1em;
-  width: 40%; /* TEMP */
+  width: 460px;
+}
+
+.banner-modal label {
+  font-weight: bold;
 }
 
 .banner-modal input[type="file"] {
+  background: var(--frosted-input-bg);
   background-color: var(--frosted-gray-2);
+  border-radius: 1em;
+  color: var(--font-default);
   font-size: medium;
+  font-weight: bold;
   margin-left: 1em;
-  padding: 1em;
+  margin-top: 1em;
+  padding: 0.2em;
+  transition: all 0.2s;
 }
 
 .banner-modal input[type="file"]::before {
-  background-color: rgba(200, 200, 255, 0.1); /* TEMP */
+  background-color: rgba(200, 200, 255, 0.1);
   content: "Browse";
+  margin-left: -0.2em;
   margin-right: 1em;
   padding: 1em;
 }
 
 .banner-modal input[type="file"]:hover {
-  color: rgba(255, 255, 255, 0.8); /* TEMP */
   content: "Browse";
+  cursor: pointer;
+  letter-spacing: 2px;
+  transform: translateX(0.2em);
 }
 
 .banner-file-select {
-  color: white; /* TEMP */
+  color: white;
 }
 
 .banner-file-select::file-selector-button {
@@ -356,14 +396,15 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .banner-modal-btn {
- background-color: var(--transparent);
- border-color: white; /* TEMP */
- border-style: outset;
- margin-top: 2em;
- min-width: 6em;
- padding: 0.5em 1em 0.5em 1em;
- text-transform: uppercase;
- transition: all 0.2s;
+  background: var(--frosted-input-bg);
+  border-radius: 1em;
+  border-style: none;
+  font-weight: bold;
+  margin-top: 2em;
+  min-width: 6em;
+  padding: 0.5em 1em 0.5em 1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
 }
 
 .banner-modal-btn:hover {
@@ -374,19 +415,102 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .image-modal {
-  background-color: var(--frosted-gray-2);
-  border-radius: 1em;
-  filter: drop-shadow(0 0 0.2em black);
+  background-image: var(--frosted-steel-2);
+  border-bottom-left-radius: 2em;
+  border-top-left-radius: 2em;
+  filter: drop-shadow(0 0 0.1em black);
+  height: 260px;
   padding: 2em;
   position: fixed;
-  right: 1em;
+  right: 0em;
   top: 1em;
-  width: 40%; /* TEMP */
+  width: 460px;
+}
+
+.image-modal label {
+  font-weight: bold;
+}
+
+.image-modal input[type="file"] {
+  background: var(--frosted-input-bg);
+  background-color: var(--frosted-gray-2);
+  border-radius: 1em;
+  color: var(--font-default);
+  font-size: medium;
+  font-weight: bold;
+  margin-left: 1em;
+  margin-top: 1em;
+  padding: 0.2em;
+  transition: all 0.2s;
+}
+
+.image-modal input[type="file"]::before {
+  background-color: rgba(200, 200, 255, 0.1);
+  content: "Browse";
+  margin-left: -0.2em;
+  margin-right: 1em;
+  padding: 1em;
+}
+
+.image-modal input[type="file"]:hover {
+  content: "Browse";
+  cursor: pointer;
+  letter-spacing: 2px;
+  transform: translateX(0.2em);
+}
+
+.image-file-select {
+  color: white;
+}
+
+.image-file-select::file-selector-button {
+  content: "Browse";
+  display: none;
+  padding: 1em;
+}
+
+.image-modal input[type="text"] {
+  background-color: var(--frosted-input-bg);
+  border: none;
+  border-radius: 0.8em;
+  min-height: 2em;
+  min-width: 26em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.image-modal input[type="text"]::placeholder {
+  color: var(--font-default);
+}
+
+.image-modal input[type="text"]:focus {
+  background-color: var(--frosted-input-em);
+  font-weight: bold;
+  outline: none;
+}
+
+.image-modal-btn {
+  background: var(--frosted-input-bg);
+  border-radius: 1em;
+  border-style: none;
+  font-weight: bold;
+  margin-top: 2em;
+  min-width: 6em;
+  padding: 0.5em 1em 0.5em 1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.image-modal-btn:hover {
+  background-color: var(--frosted-input-em);
+  cursor: pointer;
+  font-weight: bold;
+  transform: translateY(-3px);
 }
 
 /* Control panel */
 .control-panel {
-  background: var(--frosted-panel-bg-6);
+  background-image: var(--frosted-steel-2);
   filter: drop-shadow(0 0 0.1em var(--frosted-gray-3));
   height: 100vh;
   padding: 2em;
@@ -461,6 +585,15 @@ footer h4 { /* TODO - Temp selector */
   }
 }
 
+@keyframes fold_out {
+  from {
+    transform: translateX(40em);
+  }
+  to {
+    transform: translateX(0em);
+  }
+}
+
 .auth form {
   animation-duration: 0.6s;
   animation-name: unfold;
@@ -468,7 +601,12 @@ footer h4 { /* TODO - Temp selector */
 
 .banner-modal {
   animation-duration: 0.6s;
-  animation-name: unfold;
+  animation-name: fold_out;
+}
+
+.image-modal {
+  animation-duration: 0.6s;
+  animation-name: fold_out;
 }
 
 .control-panel {
