@@ -359,7 +359,6 @@ footer h4 { /* TODO - Temp selector */
 
 .banner-modal input[type="file"] {
   background: var(--frosted-input-bg);
-  background-color: var(--frosted-gray-2);
   border-radius: 1em;
   color: var(--font-default);
   font-size: medium;
@@ -433,7 +432,6 @@ footer h4 { /* TODO - Temp selector */
 
 .image-modal input[type="file"] {
   background: var(--frosted-input-bg);
-  background-color: var(--frosted-gray-2);
   border-radius: 1em;
   color: var(--font-default);
   font-size: medium;
