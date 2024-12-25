@@ -22,26 +22,8 @@
   --frosted-panel-bg-5: linear-gradient(90deg, rgba(220, 165, 30, 0.2) 20%, rgba(60, 60, 220, 0.2) 100%);
   /* --frosted-panel-bg-6: Frosted blue gradient, light top to darker bottom, lightly transparent */
   --frosted-panel-bg-6: linear-gradient(0deg, rgb(80, 80, 145, 0.6) 20%, rgb(180, 180, 230, 1) 100%);
-  /* --frosted-steel-1: Rich blue gradient with stainless steel texture */
-  --frosted-steel-1: repeating-linear-gradient(45deg,
-    rgba(0,0,0,0.08),
-    transparent,
-    rgba(0,0,0,0.02),
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.01),
-    rgba(0,0,0,0.07),
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.02),
-    rgba(0,0,0,0.04),
-    rgba(0,0,0,0.04),
-    rgba(0,0,0,0.02),
-    rgba(0,0,0,0.1),
-    rgba(0,0,0,0.07),
-    rgba(0,0,0,0.02),
-    rgba(0,0,0,0.07) 3px),
-    linear-gradient(135deg, rgb(40, 160, 255),rgb(50, 75, 130));
-  /* --frosted-steel-2: Light blue gradient with stainless steel texture */
-  --frosted-steel-2: repeating-linear-gradient(135deg,
+  /* --frosted-steel-1: Light blue gradient with stainless steel texture */
+  --frosted-steel-1: repeating-linear-gradient(135deg,
     rgba(0,0,0,0.04) 0px,
     rgba(0,0,0,0.04) 2px,
     transparent 2px,
@@ -341,7 +323,7 @@ footer h4 { /* TODO - Temp selector */
 
 /* Modal styles */
 .banner-modal {
-  background-image: var(--frosted-steel-2);
+  background-image: var(--frosted-steel-1);
   border-bottom-left-radius: 2em;
   border-top-left-radius: 2em;
   filter: drop-shadow(0 0 0.1em black);
@@ -414,7 +396,7 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .image-modal {
-  background-image: var(--frosted-steel-2);
+  background-image: var(--frosted-steel-1);
   border-bottom-left-radius: 2em;
   border-top-left-radius: 2em;
   filter: drop-shadow(0 0 0.1em black);
@@ -508,7 +490,7 @@ footer h4 { /* TODO - Temp selector */
 
 /* Control panel */
 .control-panel {
-  background-image: var(--frosted-steel-2);
+  background-image: var(--frosted-steel-1);
   filter: drop-shadow(0 0 0.1em var(--frosted-gray-3));
   height: 100vh;
   padding: 2em;
