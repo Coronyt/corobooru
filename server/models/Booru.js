@@ -15,7 +15,7 @@ const booru_schema = new Schema({
     },
     tags: {
         type: Map,
-        of: Image, // TODO - Eventually each tag will map to an array of Images
+        of: [Image],
         default: {}
     },
 }, { collection: "_boorus" });

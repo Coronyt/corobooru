@@ -105,15 +105,24 @@ user_schema.statics.post_to_booru = async function (full_ID, tags, username) {
     });
     // Setting image fields
     img.full = full_ID;
-    img.tags = tags;
+    // TODO - Validate before splitting and assigning
+    const tag_arr = tags.split(" ");
+    img.tags = tag_arr;
     // Updating booru
     const booru = await Booru.findById(user.booru);
-    console.log(booru);
     booru.imgs.push(img);
-    booru.tags.set(tags, img);
+    tag_arr.forEach((tag) => {
+        // For each tag in the given tag arr ...
+        // 1. Check to see if the tag exists in booru
+        if (Array.from(booru.tags.keys()).includes(tag)) {
+            // 2. If it does, append img to the tag's array
+            booru.tags.get(tag).push(img);
+        } else {
+            // 3. If not, create the mapping and instance val as [img]
+            booru.tags.set(tag, [img]);
+        }
+    });
     await booru.save();
-    // user.booru.set(tags, img); // TODO - Will eventually have this save a new key-value pair for every given tag
-    // TODO - At the moment the above line is mapping tags to images directly - it needs to map tags to Image arrays
     const result = await user.save();
     return result;
 }

@@ -360,7 +360,6 @@ footer h4 { /* TODO - Temp selector */
 .banner-modal input[type="file"]:hover {
   content: "Browse";
   cursor: pointer;
-  letter-spacing: 2px;
   transform: translateX(0.2em);
 }
 
@@ -433,7 +432,6 @@ footer h4 { /* TODO - Temp selector */
 .image-modal input[type="file"]:hover {
   content: "Browse";
   cursor: pointer;
-  letter-spacing: 2px;
   transform: translateX(0.2em);
 }
 

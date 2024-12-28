@@ -96,12 +96,7 @@ const assign_to_booru = async (req, res) => {
         const _id = new mongoose.Types.ObjectId(`${req.file.id.toString()}`);
         const thumb_id = await thumb_gen_aux(req, res, _id);
         // ___
-        // TODO - Does tag exist in user booru?
-        // Right now it's only accepting a single tag
         await User.post_to_booru(req.file.id, req.body.tags, req.params.user);
-            // TODO - If yes, append new Image to the tag value (array)
-                // TODO - Need to define schema for Image documents
-            // TODO - If no, create a new key for the tag in the booru and then append
         res.status(201).json({message: "Image successfully uploaded"});
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
