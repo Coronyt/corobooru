@@ -22,6 +22,11 @@ export default NiceModal.create((name) => {
                 <input type="file" className="banner-file-select" id="banner-file"/> <br />
                 <button className="banner-modal-btn">Upload banner</button>
             </form>
+            <div className="modal-exit exit">
+                <span className="material-symbols-outlined">
+                    close
+                </span>
+            </div>
         </div>
     );
 });

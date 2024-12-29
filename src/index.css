@@ -505,6 +505,24 @@ footer h4 { /* TODO - Temp selector */
   transform: translateY(-3px);
 }
 
+.modal-exit {
+  align-items: center;
+  border-radius: 1em;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  transition: all 0.2s;
+  width: 30px;
+}
+
+.modal-exit:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
 /* Control panel */
 .control-panel {
   background-image: var(--frosted-steel-1);

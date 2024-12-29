@@ -27,6 +27,11 @@ export default NiceModal.create((name) => {
                 <br />
                 <button className="image-modal-btn">Post image</button>
             </form>
+            <div className="modal-exit exit">
+                <span className="material-symbols-outlined">
+                    close
+                </span>
+            </div>
         </div>
     );
 });
