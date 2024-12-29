@@ -2,6 +2,7 @@
 
 /* Light theme "Soma" (default) */
 :root {
+  --important: rgba(255, 50, 220, 0.35);
   --transparent: rgba(255, 255, 255, 0);
   --font-default: rgb(40, 40, 40);
   --frosted-gray-1: rgba(220, 220, 220, 1);
@@ -548,9 +549,22 @@ footer h4 { /* TODO - Temp selector */
   scale: 1.05;
 }
 
-.panel-bookend {
-  margin-left: -2em;
-  margin-right: -2em;
+.panel-list .exit {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35em 0.35em 0em 0.35em;
+  width: 110%;
+}
+
+.panel-list .exit p {
+  margin-left: 0.4em;
+  margin-top: 0.7em;
+  padding: 0.2em;
+}
+
+.panel-list .exit span {
+    margin-right: 0.2em;
+    margin-top: 0.5em;
 }
 
 /* Auxiliary styles */
@@ -560,6 +574,10 @@ footer h4 { /* TODO - Temp selector */
   margin-right: 2em;
   margin-top: 1em;
   min-height: 100vh; /* TODO - Can I connect this to a media query? */
+}
+
+.exit {
+  background-color: var(--important);
 }
 
 /* Animations */

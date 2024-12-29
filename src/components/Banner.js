@@ -55,7 +55,7 @@ const Banner = () => {
                 ></l-dot-stream>
             </div>}
             {!banner && <div className="banner-default-text">
-                <h2>the owner of this board has not uploaded a banner 😞</h2>
+                <h2>The owner of this board has not uploaded a banner 😞</h2>
             </div>}
             <img src="" alt="" className="banner-img" id="banner-img"/>
         </div>

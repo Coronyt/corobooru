@@ -14,6 +14,22 @@ export default NiceModal.create((name) => {
         NiceModal.show(ImageUpload);
     }
 
+    const on_click_close_panel = (e) => {
+        // TODO
+    }
+
+    const on_click_edit_board = (e) => {
+        // TODO
+    }
+
+    const on_click_edit_theme = (e) => {
+        // TODO
+    }
+
+    const on_click_view_account = (e) => {
+        // TODO
+    }
+
     return (
         <div className="control-panel">
             <div className="panel-list">
@@ -28,7 +44,21 @@ export default NiceModal.create((name) => {
                 <div className="panel-entry" onClick={on_click_image_upload}>
                     <p>Post image to board</p>
                 </div>
-                <div className="panel-bookend"></div>
+                <div className="panel-entry" onClick={on_click_edit_board}>
+                    <p>Edit board name</p>
+                </div>
+                <div className="panel-entry" onClick={on_click_edit_theme}>
+                    <p>Edit board theme</p>
+                </div>
+                <div className="panel-entry" onClick={on_click_view_account}>
+                    <p>View account details</p>
+                </div>
+                <div className="panel-entry exit" onClick={on_click_close_panel}>
+                    <p>Close control panel</p>
+                    <span className="material-symbols-outlined">
+                        close
+                    </span>
+                </div>
             </div>
         </div>
     );
