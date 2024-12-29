@@ -27,6 +27,13 @@
     transparent 2px,
     transparent 4px),
     linear-gradient(135deg, rgb(165, 230, 235),rgb(115, 115, 230));
+  /* --frosted-steel-2: Stainless steel gold sheen left to frosted blue right*/
+  --frosted-steel-2: repeating-linear-gradient(135deg,
+  rgba(0,0,0,0.04) 0px,
+  rgba(0,0,0,0.04) 2px,
+  transparent 2px,
+  transparent 4px),
+  linear-gradient(90deg, rgba(220, 165, 30, 0.2),rgba(60, 60, 220, 0.2));
 }
 
 /* Universal styles */
@@ -310,6 +317,19 @@ footer h4 { /* TODO - Temp selector */
 .banner-upload:hover {
   cursor: pointer;
   transform: rotate(90deg);
+}
+
+.banner-default {
+  background-image: var(--frosted-steel-2);
+  border-radius: 1em;
+}
+
+.banner-default-text {
+  /* TODO - Should make padding and element height responsive */
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  transform: translate(0, 6.4em);
 }
 
 .banner-ldr {
