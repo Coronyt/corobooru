@@ -20,7 +20,6 @@ const assign_banner = async (req, res) => {
     }
 }
 
-// TODO - Close Mongoose connection after stream finish
 const find_banner = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
@@ -28,9 +27,13 @@ const find_banner = async (req, res) => {
         const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "banners" });
         if (user.banner) {
             const _id = new mongoose.Types.ObjectId(`${user.banner}`);
-            bucket.openDownloadStream(_id).pipe(res); // Will take _id as arg
+            const rstream = bucket.openDownloadStream(_id);
+            rstream.on("end", () => {
+                local.close();
+            });
+            rstream.pipe(res);
         } else {
-            res.status(400).json({error: "User has not uploaded banner"}) // TEMP
+            res.status(400).json({error: "User has not uploaded banner"})
         }
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
@@ -76,9 +79,13 @@ const thumb_gen_aux = async (req, res, _id) => {
             readable._read = () => {}
             readable.push(thumbnail); // Wrap thumbnail buffer in Readable
             readable.push(null); // Denote end of stream with null value
+            wstream.on("finish", () => {
+                local.close();
+                console.log("Finished thumbnail upload");
+            });
             readable.pipe(wstream);
             // ___
-            console.log("Finished thumb_gen_aux");
+            // console.log("Finished thumb_gen_aux");
         });
         // ___
         return;
@@ -120,16 +127,13 @@ const find_booru = async (req, res) => {
 
 const find_img_full = async (req, res) => {
     try {
-        console.log("Opening connection for fullres");
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
         const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_full" });
         const _id = new mongoose.Types.ObjectId(`${req.params.id}`);
-        // bucket.openDownloadStream(_id).pipe(res);
         const rstream = bucket.openDownloadStream(_id);
         rstream.on("end", () => {
             local.close();
-            console.log("Closed connection for fullres");
         });
         rstream.pipe(res);
     } catch (err) {
@@ -139,15 +143,12 @@ const find_img_full = async (req, res) => {
 
 const find_img_thumb = async (req, res) => {
     try {
-        console.log("Opening connection for thumbnail");
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
         const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_thumb" });
-        // bucket.openDownloadStreamByName(`thumbof_${req.params.id}`).pipe(res);
         const rstream = bucket.openDownloadStreamByName(`thumbof_${req.params.id}`);
         rstream.on("end", () => {
             local.close();
-            console.log("Closed connection for thumbnail");
         });
         rstream.pipe(res);
     } catch (err) {
