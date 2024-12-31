@@ -2,22 +2,16 @@ import { useEffect, useState } from "react";
 
 import { dotStream } from 'ldrs';
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useLoadImage } from "../hooks/useLoadImage";
 
 dotStream.register();
-
-// TODO - This needs to be a hook; currently code is copy-pasted from Banner.js
-const load_img = (img, url) => {
-    return new Promise((resolve, reject) => {
-        img.src = url;
-        img.onload = () => resolve(img);
-        img.onerror = () => reject(img);
-    });
-}
 
 const Image = ({ img }) => {
 
     const { user } = useAuthContext();
     const [pending, setPending] = useState(true);
+
+    const load_img = useLoadImage();
 
     useEffect(() => {
         const fetch_img = async () => {
