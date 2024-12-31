@@ -20,6 +20,7 @@ const assign_banner = async (req, res) => {
     }
 }
 
+// TODO - Close Mongoose connection after stream finish
 const find_banner = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
@@ -42,6 +43,7 @@ const upload_to_booru = async (req, res, next) => {
     multerware(req, res, next);
 }
 
+// TODO - Close Mongoose connection after stream finish
 const thumb_gen_aux = async (req, res, _id) => {
     try {
         // 1. Open bucket to imgs_full dir in database
@@ -118,11 +120,18 @@ const find_booru = async (req, res) => {
 
 const find_img_full = async (req, res) => {
     try {
+        console.log("Opening connection for fullres");
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
         const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_full" });
         const _id = new mongoose.Types.ObjectId(`${req.params.id}`);
-        bucket.openDownloadStream(_id).pipe(res);
+        // bucket.openDownloadStream(_id).pipe(res);
+        const rstream = bucket.openDownloadStream(_id);
+        rstream.on("end", () => {
+            local.close();
+            console.log("Closed connection for fullres");
+        });
+        rstream.pipe(res);
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
     }
@@ -130,10 +139,17 @@ const find_img_full = async (req, res) => {
 
 const find_img_thumb = async (req, res) => {
     try {
+        console.log("Opening connection for thumbnail");
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
         const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_thumb" });
-        bucket.openDownloadStreamByName(`thumbof_${req.params.id}`).pipe(res);
+        // bucket.openDownloadStreamByName(`thumbof_${req.params.id}`).pipe(res);
+        const rstream = bucket.openDownloadStreamByName(`thumbof_${req.params.id}`);
+        rstream.on("end", () => {
+            local.close();
+            console.log("Closed connection for thumbnail");
+        });
+        rstream.pipe(res);
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
     }

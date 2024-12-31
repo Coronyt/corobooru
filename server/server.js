@@ -24,7 +24,7 @@ mongoose.connect(process.env.CLUSTER)
     });
 
 // Initializing middleware
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(express.json());
 
 // Unprotected endpoints
