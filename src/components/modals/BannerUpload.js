@@ -7,6 +7,10 @@ export default NiceModal.create((name) => {
 
     const { banner_upload, error, pending } = useBannerUpload();
 
+    const exit = (_e) => {
+        modal.remove();
+    }
+
     const submit = async (e) => {
         e.preventDefault();
         const input = document.getElementById("banner-file");
@@ -23,7 +27,7 @@ export default NiceModal.create((name) => {
                 <button className="banner-modal-btn">Upload banner</button>
             </form>
             <div className="modal-exit exit">
-                <span className="material-symbols-outlined">
+                <span className="material-symbols-outlined" onClick={exit}>
                     close
                 </span>
             </div>

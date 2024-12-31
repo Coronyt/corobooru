@@ -15,7 +15,9 @@ export default NiceModal.create((name) => {
     }
 
     const on_click_close_panel = (e) => {
-        // TODO
+        NiceModal.remove(BannerUpload);
+        NiceModal.remove(ImageUpload);
+        modal.remove();
     }
 
     const on_click_edit_board = (e) => {
