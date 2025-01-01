@@ -53,6 +53,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+button:focus {
+  outline: solid 2px;
+}
+
+input:focus {
+  outline: none;
+}
+
+a:focus {
+  outline: none;
+}
+
 /* Header styles */
 header {
   background: var(--frosted-panel-bg-3);
