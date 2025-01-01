@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { dotStream } from 'ldrs';
+import { trio } from 'ldrs';
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLoadImage } from "../hooks/useLoadImage";
 
-dotStream.register();
+trio.register();
 
 const Thumbnail = ({ img, sv }) => {
 
@@ -29,11 +29,11 @@ const Thumbnail = ({ img, sv }) => {
     return (
         <div className="thumbnail" onClick={open_img}>
             {pending && <div className="thumb-ldr">
-                <l-dot-stream
-                    size="60"
-                    speed="2.5"
+                <l-trio
+                    size="30"
+                    speed="0.8"
                     color="var(--font-default)"
-                ></l-dot-stream>
+                ></l-trio>
             </div>}
             <img src="" alt="" className="thumb-img" id={"thumb-img-" + img.full}/>
         </div>
