@@ -246,10 +246,19 @@ footer h4 { /* TODO - Temp selector */
   background: var(--frosted-panel-bg-5);
   border-radius: 0.5em;
   cursor: pointer;
+  display: flex;
   font-weight: bold;
+  justify-content: space-between;
   margin: 0.6em;
   padding: 0.4em;
   transition: all 0.3s;
+}
+
+.tag-div {
+  inline-size: min-content;
+  max-width: 10em;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .tag:hover {

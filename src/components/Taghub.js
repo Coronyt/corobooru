@@ -8,7 +8,7 @@ const Taghub = ({booru}) => {
         <div className="taghub">
             <ul>
                 {booru.tags && tags.map((tag) => (
-                    <Tag tag={tag} />
+                    <Tag tag={tag} len={booru.tags[tag].length} />
                 ))}
             </ul>
         </div>
