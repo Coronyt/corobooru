@@ -352,6 +352,53 @@ footer h4 { /* TODO - Temp selector */
   transform: translate(-50%, -50%);
 }
 
+/* Image styles */
+.image-view {
+  padding: 1em;
+}
+
+.image-full:hover {
+  cursor: pointer;
+}
+
+.image-details {
+  background-image: var(--frosted-panel-bg-3);
+  border-radius: 1em;
+  margin-top: 1em;
+  padding: 1em;
+  width: 30em;
+}
+
+.image-details:hover {
+  cursor: pointer;
+}
+
+.image-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -1em;
+}
+
+.image-footer {
+  border-radius: 0.2em;
+  display: flex;
+  justify-content: space-between;
+  padding: 0em 1em 0em 1em;
+  width: 30em;
+}
+
+.image-footer span {
+  position: relative;
+  right: -0.3em;
+  top: 0.6em;
+  transition: all 0.1s;
+}
+
+.image-footer span:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
 /* Modal styles */
 .banner-modal {
   background-image: var(--frosted-steel-1);
