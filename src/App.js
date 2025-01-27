@@ -17,9 +17,10 @@ function App() {
         <Navbar />
         <div className="main">
           <Routes>
-            <Route path="/" element={!user ? <Landing /> : <Dash />} />
+            <Route path="/" element={!user ? <Landing /> : <Navigate to={`/img/${user.username}`} />} />
             <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
             <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+            <Route path="/img/:user" element={<Dash />} />
           </Routes>
         </div>
         <Footer />
