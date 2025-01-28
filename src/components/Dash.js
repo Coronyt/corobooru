@@ -12,8 +12,11 @@ const Dash = () => {
 
     const { user } = useAuthContext();
     const [booru, setBooru] = useState({});
+    const [filters, setFilters] = useState([]);
 
-    let { user: username } = useParams();
+    let { user: username, coll } = useParams();
+
+    // console.log(coll);
 
     useEffect(() => {
         const load_booru = async () => {
