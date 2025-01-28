@@ -16,7 +16,21 @@ const Dash = () => {
 
     let { user: username, coll } = useParams();
 
-    // console.log(coll);
+    console.log(coll);
+
+    // if (coll) {
+    //     // TODO - Need to process coll param here
+    //         // A valid coll string will be a series of one or more words (tags) separated by dashes
+    //         // i.e. corobooru.io/xenophon/booru/ww1-french_army-service_rifle-standard_issue
+    //         // So we split the string and store the array locally with setFilters()
+    //     const URL_coll = coll.split("-");
+    //     // console.log(URL_coll);
+    //     // setFilters(URL_coll);
+    // }
+
+    const apply_collection = () => {
+        // TODO
+    }
 
     useEffect(() => {
         const load_booru = async () => {
@@ -24,6 +38,12 @@ const Dash = () => {
             const json = await res.json();
             if (res.ok) {
                 setBooru(json);
+                if (coll) { // Checking if loading a collection
+                    const URL_coll = coll.split("-");
+                    console.log(URL_coll);
+                    setFilters(URL_coll);
+                    apply_collection();
+                }
             }
         }
         if (user) {
