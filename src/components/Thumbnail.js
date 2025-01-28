@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 
+import { Link } from "react-router-dom";
 import { trio } from 'ldrs';
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLoadImage } from "../hooks/useLoadImage";
+import { useParams } from "react-router-dom";
 
 trio.register();
 
-const Thumbnail = ({ img, sv }) => {
+const Thumbnail = ({ img }) => {
 
     const { user } = useAuthContext();
     const [pending, setPending] = useState(true);
 
-    const load_img = useLoadImage();
+    let { user: username } = useParams();
 
-    const open_img = (_e) => {
-        sv(img);
-    }
+    const load_img = useLoadImage();
 
     useEffect(() => {
             const fetch_thumbnail = async () => {
@@ -27,16 +27,18 @@ const Thumbnail = ({ img, sv }) => {
         }, []);
 
     return (
-        <div className="thumbnail" onClick={open_img}>
-            {pending && <div className="thumb-ldr">
-                <l-trio
-                    size="30"
-                    speed="0.8"
-                    color="var(--font-default)"
-                ></l-trio>
-            </div>}
-            <img src="" alt="" className="thumb-img" id={"thumb-img-" + img.full}/>
-        </div>
+        <Link to={`/img/${username}/full/${img.full}`}>
+            <div className="thumbnail">
+                {pending && <div className="thumb-ldr">
+                    <l-trio
+                        size="30"
+                        speed="0.8"
+                        color="var(--font-default)"
+                    ></l-trio>
+                </div>}
+                <img src="" alt="" className="thumb-img" id={"thumb-img-" + img.full}/>
+            </div>
+        </Link>
     );
 }
  

@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 
 import { dotStream } from 'ldrs';
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useLoadImage } from "../hooks/useLoadImage";
+import { useParams } from "react-router-dom";
 
 dotStream.register();
 
 const Image = ({ img }) => {
 
-    const { user } = useAuthContext();
     const [pending, setPending] = useState(true);
 
     const [expand, setExpand] = useState(false); // If displayed in expanded view
     const [editmode, setEditmode] = useState(false); // If user is editing Image details
     const [detailmode, setDetailmode] = useState(false); // If user is viewing Image details
 
+    let { user: username, id } = useParams();
+
     const load_img = useLoadImage();
 
     useEffect(() => {
         const fetch_img = async () => {
-            // TODO - Once again this relies on user authentication; it will eventually need to function without auth
             const img_html = document.getElementById("image-full");
-            await load_img(img_html, `/api/find/booru/${user.username}/imgs_full/${img.full}`);
+            await load_img(img_html, `/api/find/booru/${username}/imgs_full/${id}`);
             setPending(false);
         }
         fetch_img();

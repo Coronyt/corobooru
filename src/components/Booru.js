@@ -6,7 +6,7 @@ const Booru = ({ booru, sv }) => {
         <div className="booru-main">
             <div className="booru-grid">
                 {booru.imgs && booru.imgs.map((img) => (
-                    <Thumbnail key={img.full} img={img} sv={sv} />
+                    <Thumbnail key={img.full} img={img} />
                 ))}
             </div>
         </div>
