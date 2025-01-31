@@ -66,10 +66,18 @@ const Dash = () => {
             res.forEach((img) => {
                 // If the image does not map to curr tag:
                     // Remove the image from res array
-                console.log(img.full);
+                // console.log(img.tags);
+                if (!img.tags.includes(tag)) {
+                    res.splice(res.indexOf(img), 1);
+                }
             })
             // Then remove the tag from local filters
+            curr.splice(curr.indexOf(tag), 1);
         });
+        // After the local filter array is emptied, the res array will contain the filtered booru
+        console.log(res);
+        // Save the newly filtered booru to a local state separate from the unfiltered booru state
+        setFiltered(res);
     }
 
     useEffect(() => {
