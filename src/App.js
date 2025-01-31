@@ -18,12 +18,12 @@ function App() {
         <Navbar />
         <div className="main">
           <Routes>
-            <Route path="/" element={!user ? <Landing /> : <Navigate to={`/${user.username}/booru`} />} />
+            <Route path="/" element={!user ? <Landing /> : <Navigate to={`/u/${user.username}/booru`} />} />
             <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
             <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
-            <Route path="/:user/booru" element={<Dash />} />
-            <Route path="/:user/booru/:coll" element={<Dash />} />
-            <Route path="/:user/booru/img/:id" element={<Image />} />
+            <Route path="/u/:user/booru" element={<Dash />} />
+            <Route path="/u/:user/booru/:coll" element={<Dash />} />
+            <Route path="/u/:user/booru/img/:id" element={<Image />} />
           </Routes>
         </div>
         <Footer />

@@ -27,7 +27,7 @@ const Thumbnail = ({ img }) => {
         }, []);
 
     return (
-        <Link to={`/${username}/booru/img/${img.full}`}>
+        <Link to={`/u/${username}/booru/img/${img.full}`}>
             <div className="thumbnail">
                 {pending && <div className="thumb-ldr">
                     <l-trio
