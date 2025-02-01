@@ -262,8 +262,13 @@ footer h4 { /* TODO - Temp selector */
 }
 
 .tag:hover {
-  background-color: rgba(220, 165, 30, 0.625);
+  background-color: rgba(220, 165, 30, 0.425);
   transform: translateX(0.2em);
+}
+
+.active {
+  background-color: rgba(220, 165, 30, 0.825);
+  /* transform: translateX(0.2em); */
 }
 
 /* Booru styles */

@@ -1,4 +1,3 @@
-import { Navigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Banner from "./Banner";
@@ -7,6 +6,7 @@ import ControlPanel from "./modals/ControlPanel";
 import NiceModal from '@ebay/nice-modal-react';
 import Taghub from "./Taghub";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useParams } from "react-router-dom";
 
 const Dash = () => {
 
@@ -51,8 +51,11 @@ const Dash = () => {
                 setBooru(json);
                 if (coll) { // Checking if loading a collection
                     const URL_coll = coll.split("-");
-                    // console.log(URL_coll);
-                    setFilters(URL_coll);
+                    let filters_to_load = [];
+                    URL_coll.forEach((tag) => {
+                        filters_to_load.push(tag);
+                        setFilters(filters_to_load);
+                    });
                     apply_coll(URL_coll, json);
                 }
             }
@@ -79,7 +82,7 @@ const Dash = () => {
             <hr />
             {!booru.imgs && <p>Loading ...</p>} {/* TODO - Render loader component here */}
             {booru.imgs && <div className="dash-body">
-                <Taghub booru={booru} />
+                <Taghub booru={booru} filters={filters}/>
                 <Booru booru={booru} filtered={filtered} />
             </div>}
         </div>
