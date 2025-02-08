@@ -61,9 +61,6 @@ const Dash = () => {
             }
         }
         load_booru();
-        // if (user) {
-        //     load_booru();
-        // }
     }, [user]);
 
     const on_click_banner_upload = (e) => {
@@ -82,7 +79,7 @@ const Dash = () => {
             <hr />
             {!booru.imgs && <p>Loading ...</p>} {/* TODO - Render loader component here */}
             {booru.imgs && <div className="dash-body">
-                <Taghub booru={booru} filters={filters}/>
+                <Taghub booru={booru} filters={filters} setf={setFilters} appf={apply_coll}/>
                 <Booru booru={booru} filtered={filtered} />
             </div>}
         </div>

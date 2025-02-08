@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { trio } from 'ldrs';
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useLoadImage } from "../hooks/useLoadImage";
 import { useParams } from "react-router-dom";
 
@@ -10,17 +9,14 @@ trio.register();
 
 const Thumbnail = ({ img }) => {
 
-    const { user } = useAuthContext();
     const [pending, setPending] = useState(true);
-
     let { user: username } = useParams();
-
     const load_img = useLoadImage();
 
     useEffect(() => {
             const fetch_thumbnail = async () => {
                 const thumb_img = document.getElementById("thumb-img-" + img.full);
-                await load_img(thumb_img, `/api/find/booru/${user.username}/imgs_thumb/${img.full}`);
+                await load_img(thumb_img, `/api/find/booru/${username}/imgs_thumb/${img.full}`);
                 setPending(false);
             }
             fetch_thumbnail();

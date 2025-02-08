@@ -1,9 +1,15 @@
 import Tag from "./Tag";
-import { useEffect } from "react";
 
-const Taghub = ({booru, filters}) => {
+const Taghub = ({booru, filters, setf, appf}) => {
 
     const tags = Object.keys(booru.tags);
+
+    const load_filter = (tag) => {
+        let newf = [...filters];
+        newf.push(tag);
+        setf(newf);
+        appf(newf, booru);
+    }
 
     return (
         <div className="taghub">
@@ -13,7 +19,7 @@ const Taghub = ({booru, filters}) => {
                         (filters) 
                         && (filters.length > 0) 
                         && (filters.includes(tag)) ? true : false
-                    } />
+                    } loadf={load_filter} />
                 ))}
             </ul>
         </div>
