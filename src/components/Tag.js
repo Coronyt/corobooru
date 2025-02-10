@@ -1,21 +1,17 @@
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+const Tag = ({tag, len, active, loadf, rgen}) => {
 
-const Tag = ({tag, len, active, loadf}) => {
-
-    let { user: username } = useParams();
-
-    const activate = () => {
+    const activate = (e) => {
+        // TODO - User should be able to click tag again to untoggle filter
+        e.target.className = "tag active";
         loadf(tag);
+        rgen(tag);
     }
 
     return (
-        <Link to={`/u/${username}/booru/${tag}`}>
-            <li className={!active ? "tag" : "tag active"} onClick={activate}>
-                <div className="tag-div">{tag}</div>
-                <div className="len-div">{len}</div>
-            </li>
-        </Link>
+        <li className={!active ? "tag" : "tag active"} onClick={activate}>
+            <div className="tag-div">{tag}</div>
+            <div className="len-div">{len}</div>
+        </li>
     );
 }
  

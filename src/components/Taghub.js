@@ -1,6 +1,6 @@
 import Tag from "./Tag";
 
-const Taghub = ({booru, filters, setf, appf}) => {
+const Taghub = ({booru, filters, setf, appf, rgen}) => {
 
     const tags = Object.keys(booru.tags);
 
@@ -19,7 +19,7 @@ const Taghub = ({booru, filters, setf, appf}) => {
                         (filters) 
                         && (filters.length > 0) 
                         && (filters.includes(tag)) ? true : false
-                    } loadf={load_filter} />
+                    } loadf={load_filter} rgen={rgen} />
                 ))}
             </ul>
         </div>

@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 const Dash = () => {
 
-    const { user } = useAuthContext();
+    const { auth } = useAuthContext();
     const [booru, setBooru] = useState({});
     const [filters, setFilters] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -43,6 +43,14 @@ const Dash = () => {
         setFiltered(res);
     }
 
+    const route_gen = (tag) => {
+        const curr = window.location.href;
+        const tags = curr.split("/booru/")[1];
+        let route = `${curr.split("/u/")[0]}/u/${username}/booru/${tags ? tags : ""}`;
+        if (tags) {route = route + "-" + tag;} else {route = route + tag;}
+        window.history.pushState({ path: route }, '', route);
+    }
+
     useEffect(() => {
         const load_booru = async () => {
             const res = await fetch(`/api/find/booru/${username}`);
@@ -61,7 +69,7 @@ const Dash = () => {
             }
         }
         load_booru();
-    }, [user]);
+    }, [auth]);
 
     const on_click_banner_upload = (e) => {
         NiceModal.show(ControlPanel);
@@ -79,7 +87,10 @@ const Dash = () => {
             <hr />
             {!booru.imgs && <p>Loading ...</p>} {/* TODO - Render loader component here */}
             {booru.imgs && <div className="dash-body">
-                <Taghub booru={booru} filters={filters} setf={setFilters} appf={apply_coll}/>
+                <Taghub booru={booru} filters={filters}
+                    setf={setFilters}
+                    appf={apply_coll}
+                    rgen={route_gen} />
                 <Booru booru={booru} filtered={filtered} />
             </div>}
         </div>
