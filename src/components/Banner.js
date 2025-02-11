@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 
 import { dotStream } from 'ldrs';
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useLoadImage } from "../hooks/useLoadImage";
+import { useParams } from "react-router-dom";
 
 dotStream.register();
 
 const Banner = () => {
 
-    const { user } = useAuthContext();
-
     const [pending, setPending] = useState(true);
     const [banner, setBanner] = useState(true);
+
+    let { user: username } = useParams();
 
     const load_img = useLoadImage();
 
     useEffect(() => {
         const fetch_banner = async () => {
             const img = document.getElementById("banner-img");
-            await load_img(img, `/api/find/banner/${user.username}`)
+            await load_img(img, `/api/find/banner/${username}`)
                 .then(
                     (resolved) => {
                         setPending(false);
@@ -32,11 +32,8 @@ const Banner = () => {
                     }
                 );
         }
-        // Only make request if user is logged in
-        if (user) {
-            fetch_banner();
-        }
-    }, [user]);
+        fetch_banner();
+    }, []);
 
     return (
         // TODO - Upload button will display if user is logged in (check AuthContext)
