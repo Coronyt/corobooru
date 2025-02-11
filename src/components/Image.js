@@ -32,7 +32,7 @@ const Image = ({ img }) => {
     }
 
     return (
-        <div className="image-main">
+        <div className="image-main content">
             <div className="image-view">
                 {pending && <div className="image-ldr">
                     <l-dot-stream

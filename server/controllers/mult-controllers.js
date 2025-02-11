@@ -46,7 +46,6 @@ const upload_to_booru = async (req, res, next) => {
     multerware(req, res, next);
 }
 
-// TODO - Close Mongoose connection after stream finish
 const thumb_gen_aux = async (req, res, _id) => {
     try {
         // 1. Open bucket to imgs_full dir in database

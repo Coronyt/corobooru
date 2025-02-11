@@ -223,7 +223,7 @@ footer h4 { /* TODO - Temp selector */
 
 .dash-body {
   column-gap: 1em;
-  display: grid;
+  display: flex;
   padding-top: 0.6em;
 }
 
@@ -231,10 +231,9 @@ footer h4 { /* TODO - Temp selector */
 .taghub {
   background: var(--frosted-panel-bg-5);
   border-radius: 1em;
-  grid-column-end: 2;
-  grid-column-start: 1;
+  max-width: 240px;
   min-height: 100px;
-  min-width: 220px;
+  min-width: 240px;
 }
 
 .taghub ul {
@@ -259,6 +258,11 @@ footer h4 { /* TODO - Temp selector */
   max-width: 10em;
   overflow-wrap: break-word;
   word-break: normal;
+  pointer-events: none;
+}
+
+.len-div {
+  pointer-events: none;
 }
 
 .tag:hover {
@@ -268,7 +272,10 @@ footer h4 { /* TODO - Temp selector */
 
 .active {
   background-color: rgba(220, 165, 30, 0.825);
-  /* transform: translateX(0.2em); */
+}
+
+.active:hover {
+  background-color: rgba(233, 186, 68, 0.825);
 }
 
 /* Booru styles */
@@ -277,8 +284,7 @@ footer h4 { /* TODO - Temp selector */
   background: var(--frosted-panel-bg-3);
   border-radius: 1em;
   display: flex;
-  grid-column-end: 6;
-  grid-column-start: 2;
+  flex-grow: 1;
   justify-content: space-between;
   padding: 0.8em;
 }
@@ -369,6 +375,12 @@ footer h4 { /* TODO - Temp selector */
 /* Image styles */
 .image-view {
   padding: 1em;
+}
+
+.image-full {
+  max-height: 70vh;
+  max-width: 80vw;
+  object-fit: contain;
 }
 
 .image-full:hover {
