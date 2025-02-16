@@ -7,9 +7,10 @@ const Taghub = ({booru, filters, setf, appf, rgen}) => {
     const load_filter = (tag) => {
         let newf = [...filters];
         newf.push(tag);
-        setf(newf);
         appf(newf, booru);
     }
+
+    console.log(filters);
 
     return (
         <div className="taghub">

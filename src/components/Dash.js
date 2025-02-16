@@ -46,6 +46,14 @@ const Dash = () => {
     const route_gen = (tag) => {
         const curr = window.location.href;
         const tags = curr.split("/booru/")[1];
+        if (tags) {
+            const new_tags = tags.split("-");
+            new_tags.push(tag);
+            setFilters(new_tags);
+        } else {
+            const new_tags = [tag];
+            setFilters(new_tags);
+        }
         let route = `${curr.split("/u/")[0]}/u/${username}/booru/${tags ? tags : ""}`;
         if (tags) {route = route + "-" + tag;} else {route = route + tag;}
         window.history.pushState({ path: route }, '', route);
