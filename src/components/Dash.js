@@ -55,7 +55,26 @@ const Dash = () => {
             setFilters(new_tags);
         }
         let route = `${curr.split("/u/")[0]}/u/${username}/booru/${tags ? tags : ""}`;
-        if (tags) {route = route + "-" + tag;} else {route = route + tag;}
+        if (tags) {
+            route = route + "-" + tag;
+        } else {
+            route = route + tag;
+        }
+        window.history.pushState({ path: route }, '', route);
+    }
+
+    const route_rev = (tag) => {
+        const curr = window.location.href;
+        let tags = curr.split("/booru/")[1].split("-");
+        tags.splice(tags.indexOf(tag), 1);
+        setFilters(tags);
+        let route = `${curr.split("/u/")[0]}/u/${username}/booru/`;
+        tags.forEach((tag_to_append) => {
+            route = route + tag_to_append;
+            if (tags.indexOf(tag_to_append) != tags.length - 1) {
+                route = route + "-";
+            }
+        });
         window.history.pushState({ path: route }, '', route);
     }
 
@@ -98,7 +117,8 @@ const Dash = () => {
                 <Taghub booru={booru} filters={filters}
                     setf={setFilters}
                     appf={apply_coll}
-                    rgen={route_gen} />
+                    rgen={route_gen}
+                    rrev={route_rev} />
                 <Booru booru={booru} filtered={filtered} />
             </div>}
         </div>

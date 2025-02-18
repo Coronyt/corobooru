@@ -1,10 +1,15 @@
-const Tag = ({tag, len, active, loadf, rgen}) => {
+const Tag = ({tag, len, active, loadf, rgen, unloadf, rrev}) => {
 
     const activate = (e) => {
-        // TODO - User should be able to click tag again to untoggle filter
-        e.target.className = "tag active";
-        loadf(tag);
-        rgen(tag);
+        if (e.target.className == "tag active") {
+            e.target.className = "tag";
+            unloadf(tag);
+            rrev(tag);
+        } else { // if e.target.className = "tag"
+            e.target.className = "tag active";
+            loadf(tag);
+            rgen(tag);
+        }
     }
 
     return (

@@ -1,6 +1,6 @@
 import Tag from "./Tag";
 
-const Taghub = ({booru, filters, setf, appf, rgen}) => {
+const Taghub = ({booru, filters, setf, appf, rgen, rrev}) => {
 
     const tags = Object.keys(booru.tags);
 
@@ -10,7 +10,13 @@ const Taghub = ({booru, filters, setf, appf, rgen}) => {
         appf(newf, booru);
     }
 
-    console.log(filters);
+    const unload_filter = (tag) => {
+        let newf = [...filters];
+        newf.splice(newf.indexOf(tag), 1);
+        appf(newf, booru);
+    }
+
+    // console.log(filters);
 
     return (
         <div className="taghub">
@@ -20,7 +26,7 @@ const Taghub = ({booru, filters, setf, appf, rgen}) => {
                         (filters) 
                         && (filters.length > 0) 
                         && (filters.includes(tag)) ? true : false
-                    } loadf={load_filter} rgen={rgen} />
+                    } loadf={load_filter} rgen={rgen} unloadf={unload_filter} rrev={rrev} />
                 ))}
             </ul>
         </div>
