@@ -16,7 +16,28 @@ const Taghub = ({booru, filters, setf, appf, rgen, rrev}) => {
         appf(newf, booru);
     }
 
-    // console.log(filters);
+    const booru_sort = (tag1, tag2) => {
+        const len1 = booru.tags[tag1].length;
+        const len2 = booru.tags[tag2].length;
+        if (len1 > len2) {
+            return -1
+        }
+        if (len1 < len2) {
+            return 1
+        }
+        else {
+            if (tag1 > tag2) {
+                return 1
+            }
+            if (tag1 < tag2) {
+                return -1
+            }
+        }
+    }
+
+    if (booru.tags) {
+        tags.sort(booru_sort);
+    }
 
     return (
         <div className="taghub">
