@@ -2,6 +2,8 @@ const Tag = ({tag, len, active, loadf, rgen, unloadf, rrev}) => {
 
     const activate = (e) => {
         if (e.target.className == "tag active") {
+            // TODO - Visual bug where the "active" class is consistently applied to the wrong Tag component
+                // Usually it's the component which sits at the same position as the clicked tag after the Taghub updates
             e.target.className = "tag";
             unloadf(tag);
             rrev(tag);

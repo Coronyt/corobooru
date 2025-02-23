@@ -2,7 +2,7 @@ import Tag from "./Tag";
 
 const Taghub = ({booru, filters, setf, appf, rgen, rrev}) => {
 
-    const tags = Object.keys(booru.tags);
+    let tags = Object.keys(booru.tags);
 
     const load_filter = (tag) => {
         let newf = [...filters];
@@ -35,8 +35,32 @@ const Taghub = ({booru, filters, setf, appf, rgen, rrev}) => {
         }
     }
 
+    const dyn_join = (filters) => {
+        let res = [];
+        filters.forEach((filter) => {
+            const curr_imgs = booru.tags[filter];
+            curr_imgs.forEach((img) => {
+                img.tags.forEach((tag) => {
+                    if (!filters.includes(tag) && !res.includes(tag)) {
+                        res.push(tag);
+                    }
+                })
+            });
+        });
+        return res;
+    }
+
     if (booru.tags) {
-        tags.sort(booru_sort);
+        if (filters.length > 0) {
+            let arr_f = filters;
+            let arr_r = booru.tags;
+            let arr_d = dyn_join(arr_f);
+            arr_f.sort(booru_sort);
+            arr_d.sort(booru_sort);
+            tags = arr_f.concat(arr_d);
+        } else {
+            tags.sort(booru_sort);
+        }
     }
 
     return (
