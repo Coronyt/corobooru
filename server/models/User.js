@@ -75,7 +75,7 @@ user_schema.statics.signup = async function (email, username, password) {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
     // Creating Booru for user
-    const booru = await Booru.create({owner: username});
+    const booru = await Booru.create({owner: username, header: `${username}'s board`});
     // Creating user in database
     const user = await this.create({email, username, password: hash, booru: booru._id});
     // Returning new user document

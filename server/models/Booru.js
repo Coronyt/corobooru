@@ -18,6 +18,10 @@ const booru_schema = new Schema({
         of: [Image],
         default: {}
     },
+    header: {
+        type: String,
+        required: true
+    },
 }, { collection: "_boorus" });
 
 module.exports = mongoose.model("Booru", booru_schema);
