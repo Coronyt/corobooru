@@ -40,6 +40,10 @@ const find_banner = async (req, res) => {
     }
 }
 
+const set_booru_header = async (req, res) => {
+    // TODO - Should invoke the appropriate method from the User model
+}
+
 const upload_to_booru = async (req, res, next) => {
     const user = await User.findOne({ username: req.params.user });
     const multerware = upload("imgs_full").single("file");
@@ -158,6 +162,7 @@ const find_img_thumb = async (req, res) => {
 module.exports = {
     assign_banner,
     find_banner,
+    set_booru_header,
     upload_to_booru,
     assign_to_booru,
     find_booru,

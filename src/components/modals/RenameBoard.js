@@ -1,6 +1,6 @@
 import NiceModal, { useModal } from '@ebay/nice-modal-react';
 
-// import { useImageUpload } from "../../hooks/useImageUpload";
+import { useBoardRename } from "../../hooks/useBoardRename";
 
 export default NiceModal.create((name) => {
     const modal = useModal();
@@ -13,7 +13,9 @@ export default NiceModal.create((name) => {
 
     const submit = async (e) => {
         e.preventDefault();
-        // TODO
+        // TODO - Hook into useBoardRename
+            // Query DOM for new name and pass to hooked func
+            // Await function resolution and then refresh page?
     }
 
     return ( // TODO - Change classNames after consolidating modal CSS classes
