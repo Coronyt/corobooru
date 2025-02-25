@@ -77,9 +77,9 @@ header {
 /* Footer styles */
 footer {
   background: var(--frosted-panel-bg-4);
-  bottom: 0vh;
   font-size: small;
-  position: fixed;
+  padding-bottom: 0.2em;
+  padding-top: 0.2em;
   text-transform: lowercase;
   transition: all 0.1s;
   width: 100%;
