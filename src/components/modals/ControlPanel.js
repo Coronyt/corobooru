@@ -2,6 +2,7 @@ import NiceModal, { useModal } from '@ebay/nice-modal-react';
 
 import BannerUpload from "./BannerUpload";
 import ImageUpload from "./ImageUpload";
+import RenameBoard from "./RenameBoard";
 
 export default NiceModal.create((name) => {
     const modal = useModal();
@@ -21,7 +22,7 @@ export default NiceModal.create((name) => {
     }
 
     const on_click_edit_board = (e) => {
-        // TODO
+        NiceModal.show(RenameBoard);
     }
 
     const on_click_edit_theme = (e) => {

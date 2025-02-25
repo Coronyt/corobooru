@@ -425,6 +425,7 @@ footer h4 { /* TODO - Temp selector */
   transform: scale(1.2);
 }
 
+/* TODO - There are a lot of duplicate CSS statements below which should really be streamlined into a generic modal class */
 /* Modal styles */
 .banner-modal {
   background-image: var(--frosted-steel-1);
@@ -606,6 +607,14 @@ footer h4 { /* TODO - Temp selector */
 .modal-exit:hover {
   cursor: pointer;
   scale: 1.1;
+}
+
+.rename-modal {
+  max-height: 165px;
+}
+
+.rename-modal button {
+  margin-top: 1.7em;
 }
 
 /* Control panel */
