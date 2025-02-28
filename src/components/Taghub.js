@@ -67,7 +67,7 @@ const Taghub = ({booru, filters, setf, appf, rgen, rrev}) => {
         <div className="taghub">
             <ul>
                 {booru.tags && tags.map((tag) => (
-                    <Tag tag={tag} len={booru.tags[tag].length} active={
+                    <Tag tag={tag} key={tag} len={booru.tags[tag].length} active={
                         (filters) 
                         && (filters.length > 0) 
                         && (filters.includes(tag)) ? true : false

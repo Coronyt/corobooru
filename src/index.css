@@ -293,7 +293,7 @@ footer h4 { /* TODO - Temp selector */
   align-content: start;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
   row-gap: 0.4em;
   width: 100%;
 }

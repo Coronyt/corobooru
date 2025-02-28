@@ -9,7 +9,6 @@ export const useBoardRename = () => {
     const { user } = useAuthContext();
     // Sending PUT request with fetch()
     const send_board_name = async (header) => {
-        console.log(header);
         setPending(true); // Set pending
         setError(null); // Reset errors
         const res = await fetch(`/api/config/booru/${user.username}/set_header`, {
