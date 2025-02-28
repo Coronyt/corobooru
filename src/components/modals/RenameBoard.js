@@ -5,7 +5,7 @@ import { useBoardRename } from "../../hooks/useBoardRename";
 export default NiceModal.create((name) => {
     const modal = useModal();
 
-    // const { image_upload, error, pending } = useImageUpload();
+    const { send_board_name, error, pending } = useBoardRename();
 
     const exit = (_e) => {
         modal.remove();
@@ -13,16 +13,16 @@ export default NiceModal.create((name) => {
 
     const submit = async (e) => {
         e.preventDefault();
-        // TODO - Hook into useBoardRename
-            // Query DOM for new name and pass to hooked func
-            // Await function resolution and then refresh page?
+        const input = document.getElementById("new-name");
+        await send_board_name(input.value);
+        window.location.reload();
     }
 
     return ( // TODO - Change classNames after consolidating modal CSS classes
         <div className="image-modal rename-modal">
             <h3>Create a custom header:</h3>
             <form onSubmit={submit}>
-                <input type="text" id="image-tags" autoComplete="off" spellCheck="false"/>
+                <input type="text" id="new-name" autoComplete="off" spellCheck="false"/>
                 <br />
                 <button className="image-modal-btn">Submit changes</button>
             </form>

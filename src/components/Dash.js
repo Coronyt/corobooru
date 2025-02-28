@@ -106,10 +106,10 @@ const Dash = () => {
         <div className="dash content">
             <Banner />
             <div className="dash-head">
-            <h2>{username}'s board</h2>
-            <span className="material-symbols-outlined banner-upload" onClick={on_click_banner_upload}>
-                menu
-            </span>
+                <h2>{booru.header}</h2>
+                <span className="material-symbols-outlined banner-upload" onClick={on_click_banner_upload}>
+                    menu
+                </span>
             </div>
             <hr />
             {!booru.imgs && <p>Loading ...</p>} {/* TODO - Render loader component here */}

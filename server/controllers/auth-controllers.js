@@ -19,7 +19,7 @@ const login_user = async (req, res) => {
         res.status(200).json({username, token});
         console.log("User", username, "successfully logged in");
     } catch (err) {
-        res.status(400).json({error: err.message})
+        res.status(400).json({error: err.message});
     }
 }
 
@@ -33,7 +33,7 @@ const signup_user = async (req, res) => {
         res.status(201).json({username, token});
         console.log("User", username, "successfully signed up");
     } catch (err) {
-        res.status(400).json({error: err.message})
+        res.status(400).json({error: err.message});
     }
 }
 

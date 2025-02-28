@@ -30,7 +30,7 @@ router.post("/upload/booru/:user", upload_to_booru, assign_to_booru);
 // ^ Logic flow is:
     // Req w/ file is received at route -> file is uploaded through multer engine -> req (now w/ _id) is handled by second callback which sets banner by ID in user document
 
-router.put("/config/booru/:user", set_booru_header);
+router.put("/config/booru/:user/set_header", set_booru_header);
 
 // Retrieval routes
 router.get("/find/banner/:user", find_banner); // Will return a stream of the user's banner

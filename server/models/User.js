@@ -129,7 +129,10 @@ user_schema.statics.post_to_booru = async function (full_ID, tags, username) {
 
 user_schema.statics.set_booru_header = async function (username, new_header) {
     const user = await this.findOne({username});
-    // TODO
+    const booru = await Booru.findById(user.booru);
+    booru.header = new_header;
+    const result = await booru.save();
+    return result;
 }
 
 module.exports = mongoose.model("User", user_schema);

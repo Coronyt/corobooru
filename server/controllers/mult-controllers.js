@@ -41,7 +41,12 @@ const find_banner = async (req, res) => {
 }
 
 const set_booru_header = async (req, res) => {
-    // TODO - Should invoke the appropriate method from the User model
+    try {
+        await User.set_booru_header(req.params.user, req.body.header);
+        res.status(200).json({message: "Header set successfully"});
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
 }
 
 const upload_to_booru = async (req, res, next) => {
@@ -52,11 +57,11 @@ const upload_to_booru = async (req, res, next) => {
 
 const thumb_gen_aux = async (req, res, _id) => {
     try {
-        // 1. Open bucket to imgs_full dir in database
+        // Open bucket to imgs_full dir in database
         const user = await User.findOne({ username: req.params.user });
         const local = await mongoose.createConnection(process.env.CLUSTER).asPromise();
         const bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_full" });
-        // 2. Read from stream into local buffer
+        // Read from stream into local buffer
         const rstream = bucket.openDownloadStream(_id);
         let buffer = Buffer.alloc(0);
         rstream.on("data", (chunk) => {
@@ -64,7 +69,7 @@ const thumb_gen_aux = async (req, res, _id) => {
         });
         rstream.on("end", async (chunk) => {
             console.log(buffer);
-            // 3. Create thumbnail from buffer data
+            // Create thumbnail from buffer data
             const thumbnail = await to_thumbnail(buffer, {
                 percentage: 30,
                 width: 200,
@@ -74,23 +79,18 @@ const thumb_gen_aux = async (req, res, _id) => {
             });
             console.log("Thumbnail created");
             console.log(thumbnail);
-            // 4. Pipe thumbnail to imgs_thumb dir
+            // Pipe thumbnail to imgs_thumb dir
             const res_bucket = new mongoose.mongo.GridFSBucket(local.db, { bucketName: "imgs_thumb" });
             const wstream = res_bucket.openUploadStream("thumbof_" + _id.toString());
-            // ___
             const readable = new Readable();
             readable._read = () => {}
             readable.push(thumbnail); // Wrap thumbnail buffer in Readable
             readable.push(null); // Denote end of stream with null value
             wstream.on("finish", () => {
                 local.close();
-                console.log("Finished thumbnail upload");
             });
             readable.pipe(wstream);
-            // ___
-            // console.log("Finished thumb_gen_aux");
         });
-        // ___
         return;
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
@@ -99,15 +99,8 @@ const thumb_gen_aux = async (req, res, _id) => {
 
 const assign_to_booru = async (req, res) => {
     try {
-        // ___
-        // Going to try and generate the thumbnail here
-            // 1. Open bucket to imgs_full dir in database
-            // 2. Read from stream into local buffer
-            // 3. Create thumbnail from buffer data
-            // 4. Pipe thumbnail to imgs_thumb dir
         const _id = new mongoose.Types.ObjectId(`${req.file.id.toString()}`);
         const thumb_id = await thumb_gen_aux(req, res, _id);
-        // ___
         await User.post_to_booru(req.file.id, req.body.tags, req.params.user);
         res.status(201).json({message: "Image successfully uploaded"});
     } catch (err) {
@@ -121,7 +114,8 @@ const find_booru = async (req, res) => {
         const booru = await Booru.findById(user.booru);
         res.status(200).json({
             imgs: booru.imgs,
-            tags: booru.tags
+            tags: booru.tags,
+            header: booru.header
         });
     } catch (err) {
         res.status(400).json({error: err.message}) // Generic error handler
