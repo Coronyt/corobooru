@@ -281,7 +281,6 @@ footer h4 { /* TODO - Temp selector */
 /* Booru styles */
 .booru-main {
   align-content: space-between;
-  background: var(--frosted-panel-bg-3);
   border-radius: 1em;
   display: flex;
   flex-grow: 1;
@@ -293,9 +292,12 @@ footer h4 { /* TODO - Temp selector */
   align-content: start;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   row-gap: 0.4em;
   width: 100%;
+}
+
+.booru-grid a {
+  padding: 0.4em;
 }
 
 .thumbnail {
@@ -690,6 +692,10 @@ footer h4 { /* TODO - Temp selector */
 
 .exit {
   background-color: var(--important);
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 /* Animations */

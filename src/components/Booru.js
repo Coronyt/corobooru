@@ -4,7 +4,8 @@ const Booru = ({ booru, filtered }) => {
 
     return (
         <div className="booru-main">
-            <div className="booru-grid">
+            <div className={(filtered && (filtered.length > 0)) 
+                    ? "booru-grid" : "booru-grid justify-center"}>
                 {/* If the component is passed an unfiltered booru */}
                 {booru.imgs && filtered && (filtered.length == 0) && booru.imgs.map((img) => (
                     <Thumbnail key={img.full} img={img} />
