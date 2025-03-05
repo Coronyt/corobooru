@@ -10,7 +10,6 @@ const Image = ({ img }) => {
 
     const [pending, setPending] = useState(true);
 
-    const [expand, setExpand] = useState(false); // If displayed in expanded view
     const [editmode, setEditmode] = useState(false); // If user is editing Image details
     const [detailmode, setDetailmode] = useState(false); // If user is viewing Image details
 
@@ -31,6 +30,15 @@ const Image = ({ img }) => {
         setDetailmode(!detailmode);
     }
 
+    const img_expand = () => {
+        const img_html = document.getElementById("image-full");
+        if (img_html.className == "image-full") {
+            img_html.className = "image-maxed";
+        } else {
+            img_html.className = "image-full";
+        }
+    }
+
     return (
         <div className="image-main content">
             <div className="image-view">
@@ -41,10 +49,8 @@ const Image = ({ img }) => {
                         color="var(--font-default)"
                     ></l-dot-stream>
                 </div>}
-                <img src="" alt="" className="image-full" id="image-full"/>
+                <img src="" alt="" className="image-full" id="image-full" onClick={img_expand}/>
             </div>
-            {/* TODO - Make the below details area click-to-expand (collapsed by default) */}
-            {/* Maybe only the image desc shows by default, and the others expand out */}
             <div className="image-details" onClick={show_details}>
                 <div className="image-detail">
                     <p>desc:</p>
