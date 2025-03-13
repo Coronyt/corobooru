@@ -13,7 +13,7 @@ const Thumbnail = ({ img }) => {
     let { user: username } = useParams();
     const load_img = useLoadImage();
 
-    console.log(img.tags);
+    // console.log(img.tags);
 
     useEffect(() => {
             const fetch_thumbnail = async () => {

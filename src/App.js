@@ -12,6 +12,7 @@ import { useAuthContext } from "./hooks/useAuthContext"
 function App() {
   // Hooking into app auth state context
   const { user } = useAuthContext();
+  console.log(user);
   return (
     <div className="app">
       <BrowserRouter>

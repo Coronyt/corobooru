@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 const Dash = () => {
 
-    const { auth } = useAuthContext();
+    const { user } = useAuthContext();
     const [booru, setBooru] = useState({});
     const [filters, setFilters] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -96,10 +96,15 @@ const Dash = () => {
             }
         }
         load_booru();
-    }, [auth]);
+    }, [user]);
 
     const on_click_banner_upload = (e) => {
         NiceModal.show(ControlPanel);
+    }
+
+    const on_click_booru_search = (e) => {
+        const booru_search = document.getElementById("booru-search-btn");
+        booru_search.style.display = "none";
     }
 
     return (
@@ -107,9 +112,15 @@ const Dash = () => {
             <Banner />
             <div className="dash-head">
                 <h2>{booru.header}</h2>
-                <span className="material-symbols-outlined banner-upload" onClick={on_click_banner_upload}>
+                {user ? <span className="material-symbols-outlined banner-upload" onClick={on_click_banner_upload}>
                     menu
-                </span>
+                </span> : 
+                <span>
+                    <input type="text" className="booru-search-bar" id="booru-search-bar" />
+                    <span className="material-symbols-outlined booru-search" id="booru-search-btn" onClick={on_click_booru_search}>
+                        search
+                    </span>
+                </span>}
             </div>
             <hr />
             {!booru.imgs && <p>Loading ...</p>} {/* TODO - Render loader component here */}

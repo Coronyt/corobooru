@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 dotStream.register();
 
-const Image = ({ img }) => {
+const Image = () => {
 
     const [pending, setPending] = useState(true);
 
@@ -24,6 +24,14 @@ const Image = ({ img }) => {
             setPending(false);
         }
         fetch_img();
+        // TODO - Need to create a reference to the image document somewhere in this component
+            // Currently this image component is only getting an rstream back from the API
+            // There needs to be logic in the component for getting the image document
+                // Then mapping the respective fields to the image-details element
+            // Can start by mapping user -> booru -> img
+                // Used API to find booru by user
+                // Then find img in booru by ID
+                // Store img in local field
     });
 
     const show_details = () => {
@@ -38,6 +46,8 @@ const Image = ({ img }) => {
             img_html.className = "image-full";
         }
     }
+
+    // console.log(img);
 
     return (
         <div className="image-main content">
@@ -71,6 +81,10 @@ const Image = ({ img }) => {
                     </div>
                     <div className="image-detail">
                         <p>post_date:</p>
+                        <p>None</p>
+                    </div>
+                    <div className="image-detail">
+                        <p>tags:</p>
                         <p>None</p>
                     </div>
                 </div>}
