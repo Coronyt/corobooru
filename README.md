@@ -20,7 +20,7 @@ Having long been dissatisfied with platforms such as Reddit, Instagram, or Pinte
 
 While other more traditional imageboards such as the _-chan_ or _-booru_ websites do not suffer from the same feature bloat, they are notorious for being poorly moderated and for incorporating anonymizing social features which incentivize a poor quality of both user and content.
 
-The aim of `corobooru` is the synthesize the design principles of the aforementioned platforms which are most appealing to me (primarily the uploading, organizing, and sharing of collections of images), while foregoing the "bloat" (social media integration or otherwise social features).
+The aim of `corobooru` is to synthesize the design principles of the aforementioned platforms which are most appealing to me (primarily the uploading, organizing, and sharing of collections of images), while foregoing the "bloat" (social media integration or otherwise social features).
 
 ## Tech stack
 - `corobooru` is a full-stack web application built with the MERN stack
